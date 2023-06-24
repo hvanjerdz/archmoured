@@ -6,4 +6,5 @@ nav:
   - Post-Install: post-install.md
   - About: about.md
 
-theme: readthedocs
+theme:
+  name: material
