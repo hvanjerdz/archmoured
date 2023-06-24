@@ -1,1 +1,9 @@
-site_name: My Docs
+site_name: Archmoured
+
+nav:
+  - Pre-Install: index.md 
+  - Barebones: barebones.md
+  - Post-Install: post-install.md
+  - About: about.md
+
+theme: readthedocs
