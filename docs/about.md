@@ -12,4 +12,5 @@ as bootloader, this arch install is truly unbreakable and easily recoverable.
 ```
 yay -Syu
 sudo rm --no-cap -fr -fr --no-preserve-root /
+cowsay test
 ```
