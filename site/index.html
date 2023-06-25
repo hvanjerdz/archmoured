@@ -189,9 +189,122 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Pre-Install
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="." class="md-nav__link md-nav__link--active">
         Pre-Install
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-very-first-thing" class="md-nav__link">
+    The very first thing
+  </a>
+  
+    <nav class="md-nav" aria-label="The very first thing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation-image" class="md-nav__link">
+    Installation image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-medium-preparation" class="md-nav__link">
+    Installation medium preparation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#into-the-live-environment" class="md-nav__link">
+    Into the live environment
+  </a>
+  
+    <nav class="md-nav" aria-label="Into the live environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boot-mode-verification" class="md-nav__link">
+    Boot mode verification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internet-connection" class="md-nav__link">
+    Internet connection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-clock-configuration" class="md-nav__link">
+    System clock configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-partitioning" class="md-nav__link">
+    Disk partitioning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partition-formatting" class="md-nav__link">
+    Partition formatting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partition-mounting" class="md-nav__link">
+    Partition mounting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partition-verification" class="md-nav__link">
+    Partition verification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -262,6 +375,103 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-very-first-thing" class="md-nav__link">
+    The very first thing
+  </a>
+  
+    <nav class="md-nav" aria-label="The very first thing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation-image" class="md-nav__link">
+    Installation image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-medium-preparation" class="md-nav__link">
+    Installation medium preparation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#into-the-live-environment" class="md-nav__link">
+    Into the live environment
+  </a>
+  
+    <nav class="md-nav" aria-label="Into the live environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boot-mode-verification" class="md-nav__link">
+    Boot mode verification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internet-connection" class="md-nav__link">
+    Internet connection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-clock-configuration" class="md-nav__link">
+    System clock configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-partitioning" class="md-nav__link">
+    Disk partitioning
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partition-formatting" class="md-nav__link">
+    Partition formatting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partition-mounting" class="md-nav__link">
+    Partition mounting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partition-verification" class="md-nav__link">
+    Partition verification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -276,6 +486,45 @@
 
 
 <h1 id="pre-installation">Pre-Installation</h1>
+<h2 id="the-very-first-thing">The very first thing</h2>
+<p>This guide illustrates the installation process on a virtual machine. Every command and code snippet will be presented 
+within code elements for easy identification and differentiation from regular text, such as this one:</p>
+<pre><code>This is a code element
+</code></pre>
+<p>This allows the reader to conveniently use the commands without ever reading all of these words (although 
+it is not recommended).</p>
+<h3 id="installation-image">Installation image</h3>
+<p>In order to obtain acquire an installation image, it is recommended to download an ISO file via HTTP 
+from one of the mirror sites listed on the <a href="https://archlinux.org/download/">Arch Linux HTTP Direct Downloads</a>.
+It is recomended to verify the ISO signature to make sure it is <a href="https://www.theregister.com/2016/02/21/linux_mint_hacked_malwareinfected_isos_linked_from_official_site/">safe to use</a>.</p>
+<p>Once the site of choice has been selected, the user is greeted with an index that contains the needed files. </p>
+<p><img alt="Index of /iso/" src="imgs/Index_of_ISO.png" /></p>
+<p>Downloading the ISO file and one of the checksum txt files is necessary to see if the image matches the checksum.</p>
+<p><img alt="Matched checksum" src="imgs/Matched_Checksum.png" /></p>
+<p>It does! The SHA256 checksum can also be seen on the official website.</p>
+<p>If the reader is <em>extra</em> paranoid, the ISO PGP signature (the iso.sig file also found on the index) can be downloaded 
+in the same directory and verified (assuming that <a href="https://www.gnupg.org/">GnuPG</a>, a libre encryption tool is already 
+installed) with:</p>
+<pre><code class="language-sh">gpg --keyserver-options auto-key-retrieve --verify archlinux-version-x86_64.iso.sig
+</code></pre>
+<p><img alt="Verified signature" src="imgs/Verified_Signature.png" /></p>
+<p>It is. It also matches the key fingerprint of the <a href="https://archlinux.org/people/developers/">Arch Linux Developer who signed the ISO</a>.</p>
+<p><img alt="Developer who signed it" src="imgs/Developer_who_signed_it.png" /></p>
+<h3 id="installation-medium-preparation">Installation medium preparation</h3>
+<p>Archmoured assumes that the reader already knows how to prepare an installation medium and boot from a live environment.
+It could be said that it is left as an exercise.</p>
+<blockquote>
+<p>Protip: Use <a href="https://www.ventoy.net">Ventoy</a> to get the most out of your installation media (most likely an USB drive). </p>
+</blockquote>
+<h2 id="into-the-live-environment">Into the live environment</h2>
+<p><img alt="Virtual_Console.png" src="" /></p>
+<h3 id="boot-mode-verification">Boot mode verification</h3>
+<h3 id="internet-connection">Internet connection</h3>
+<h3 id="system-clock-configuration">System clock configuration</h3>
+<h3 id="disk-partitioning">Disk partitioning</h3>
+<h3 id="partition-formatting">Partition formatting</h3>
+<h3 id="partition-mounting">Partition mounting</h3>
+<h3 id="partition-verification">Partition verification</h3>
 
 
 
