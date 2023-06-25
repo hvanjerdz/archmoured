@@ -13,11 +13,11 @@ it is not recommended).
 
 ### Installation image
 
-In order to obtain acquire an installation image, it is recommended to download an ISO file via HTTP 
+In order to obtain acquire an installation image, it is suggested to download an ISO file via HTTP 
 from one of the mirror sites listed on the [Arch Linux HTTP Direct Downloads](https://archlinux.org/download/).
 It is recomended to verify the ISO signature to make sure it is [safe to use](https://www.theregister.com/2016/02/21/linux_mint_hacked_malwareinfected_isos_linked_from_official_site/).
 
-Once the site of choice has been selected, the user is greeted with an index that contains the needed files. 
+Once the site of choice has been selected, it greets with an index that contains the needed files. 
 
 ![Index of /iso/](imgs/Index_of_ISO.png)
 
