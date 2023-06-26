@@ -249,6 +249,20 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#optional-set-console-font" class="md-nav__link">
+    (Optional) Set console font
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-set-console-keyboard-layout" class="md-nav__link">
+    (Optional) Set console keyboard layout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#boot-mode-verification" class="md-nav__link">
     Boot mode verification
   </a>
@@ -417,6 +431,20 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#optional-set-console-font" class="md-nav__link">
+    (Optional) Set console font
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-set-console-keyboard-layout" class="md-nav__link">
+    (Optional) Set console keyboard layout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#boot-mode-verification" class="md-nav__link">
     Boot mode verification
   </a>
@@ -494,22 +522,22 @@ within code elements for easy identification and differentiation from regular te
 <p>This allows the reader to conveniently use the commands without ever reading all of these words (although 
 it is not recommended).</p>
 <h3 id="installation-image">Installation image</h3>
-<p>In order to obtain acquire an installation image, it is suggested to download an ISO file via HTTP 
+<p>In order to obtain an installation image, it is suggested to download an ISO file via HTTP 
 from one of the mirror sites listed on the <a href="https://archlinux.org/download/">Arch Linux HTTP Direct Downloads</a>.
 It is recomended to verify the ISO signature to make sure it is <a href="https://www.theregister.com/2016/02/21/linux_mint_hacked_malwareinfected_isos_linked_from_official_site/">safe to use</a>.</p>
 <p>Once the site of choice has been selected, it greets with an index that contains the needed files. </p>
-<p><img alt="Index of /iso/" src="imgs/Index_of_ISO.png" /></p>
+<p><img alt="Index of /iso/" src="img/Index_of_ISO.png" /></p>
 <p>Downloading the ISO file and one of the checksum txt files is necessary to see if the image matches the checksum.</p>
-<p><img alt="Matched checksum" src="imgs/Matched_Checksum.png" /></p>
+<p><img alt="Matched checksum" src="img/Matched_Checksum.png" /></p>
 <p>It does! The SHA256 checksum can also be seen on the official website.</p>
 <p>If the reader is <em>extra</em> paranoid, the ISO PGP signature (the iso.sig file also found on the index) can be downloaded 
 in the same directory and verified (assuming that <a href="https://www.gnupg.org/">GnuPG</a>, a libre encryption tool is already 
 installed) with:</p>
 <pre><code class="language-sh">gpg --keyserver-options auto-key-retrieve --verify archlinux-version-x86_64.iso.sig
 </code></pre>
-<p><img alt="Verified signature" src="imgs/Verified_Signature.png" /></p>
+<p><img alt="Verified signature" src="img/Verified_Signature.png" /></p>
 <p>It is. It also matches the key fingerprint of the <a href="https://archlinux.org/people/developers/">Arch Linux Developer who signed the ISO</a>.</p>
-<p><img alt="Developer who signed it" src="imgs/Developer_who_signed_it.png" /></p>
+<p><img alt="Developer who signed it" src="img/Developer_who_signed_it.png" /></p>
 <h3 id="installation-medium-preparation">Installation medium preparation</h3>
 <p>Archmoured assumes that the reader already knows how to prepare an installation medium and boot from a live environment.
 It could be said that it is left as an exercise.</p>
@@ -517,7 +545,25 @@ It could be said that it is left as an exercise.</p>
 <p>Protip: Use <a href="https://www.ventoy.net">Ventoy</a> to get the most out of your installation media (most likely an USB drive). </p>
 </blockquote>
 <h2 id="into-the-live-environment">Into the live environment</h2>
-<p><img alt="Virtual_Console.png" src="" /></p>
+<p>Once booted, a shell prompt is presented.</p>
+<p><img alt="Virtual_console.png" src="img/Virtual_console.png" /></p>
+<h3 id="optional-set-console-font">(Optional) Set console font</h3>
+<p>Those small characters may not be to everyone's liking. In order for the screenshots to be readable, a larger font has been
+selected. </p>
+<p><img alt="Larger_font.png" src="img/Larger_font.png" /></p>
+<p>Console fonts can be found in <code>usr/share/kbd/consolefonts/</code> and set with <a href="https://man.archlinux.org/man/setfont.8">setfont</a>.</p>
+<p><img alt="Consolefont.png" src="img/Consolefont.png" /></p>
+<h3 id="optional-set-console-keyboard-layout">(Optional) Set console keyboard layout</h3>
+<p>The default console keymap is <a href="https://en.wikipedia.org/wiki/File:KB_United_States-NoAltGr.svg">US</a>. All available layouts can be found in <code>/usr/share/kbd/keymaps</code>. For example's sake this guide will show how to set up the <a href="https://commons.wikimedia.org/wiki/File:KB_Latin_American.svg">Latin American</a> layout. 
+To list all the available keymaps, the command <code>locatectl list-keymaps</code> is used. <a href="https://www.gnu.org/software/grep/manual/html_node/index.html">Grep</a> can also be handy when searching for a more specific result. Searching for this specific keymap can be done with:</p>
+<pre><code>localectl list-keymaps | grep -i la
+</code></pre>
+<p>Once located, it can be set up for the current session. This is done by using <a href="https://man.archlinux.org/man/loadkeys.1">loadkeys</a>.
+To set the already located layout, the following command is used:</p>
+<pre><code>loadkeys la-latin1
+</code></pre>
+<p><img alt="Latam_loadkeys.png" src="img/Latam_loadkeys.png" /></p>
+<p>And there it is!</p>
 <h3 id="boot-mode-verification">Boot mode verification</h3>
 <h3 id="internet-connection">Internet connection</h3>
 <h3 id="system-clock-configuration">System clock configuration</h3>
