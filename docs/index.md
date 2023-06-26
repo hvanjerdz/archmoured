@@ -46,6 +46,10 @@ It is. It also matches the key fingerprint of the [Arch Linux Developer who sign
 Archmoured assumes that the reader already knows how to prepare an installation medium and boot from a live environment.
 It could be said that it is left as an exercise.
 
+**Important**: For this specific setup, it is necessary to be booting in [UEFI mode](https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface). If not, both disk partitioning and bootloader used in this guide are going to be 
+incompatible with the reader's system.
+
+
 > Protip: Use [Ventoy](https://www.ventoy.net) to get the most out of your installation media (most likely an USB drive). 
 
 ## Into the live environment
@@ -67,18 +71,18 @@ Console fonts can be found in ```usr/share/kbd/consolefonts/``` and set with [se
 
 ### (Optional) Set console keyboard layout
 
-The default console keymap is [US](https://en.wikipedia.org/wiki/File:KB_United_States-NoAltGr.svg). All available layouts can be found in ```/usr/share/kbd/keymaps```. For example's sake this guide will show how to set up the [Latin American](https://commons.wikimedia.org/wiki/File:KB_Latin_American.svg) layout. 
-To list all the available keymaps, the command ```locatectl list-keymaps``` is used. [Grep](https://www.gnu.org/software/grep/manual/html_node/index.html) can also be handy when searching for a more specific result. Searching for this specific keymap can be done with:
+The default console keymap is [US](https://en.wikipedia.org/wiki/File:KB_United_States-NoAltGr.svg). All available layouts can be found in ```/usr/share/kbd/keymaps```. For example's sake, this guide will show how to set up the [Latin American](https://commons.wikimedia.org/wiki/File:KB_Latin_American.svg) layout (la). 
+To list all the available keymaps, the command ```locatectl list-keymaps``` is used. [Grep](https://www.gnu.org/software/grep/manual/html_node/index.html) comes in handy when searching for a more specific result. Searching for this specific keymap can be done with:
 
 
-```
+```sh
 localectl list-keymaps | grep -i la
 ```
 
 Once located, it can be set up for the current session. This is done by using [loadkeys](https://man.archlinux.org/man/loadkeys.1).
-To set the already located layout, the following command is used:
+To set the already located layout, the loadkeys command followed by the chosen layout is used:
 
-```
+```sf
 loadkeys la-latin1
 ```
 
@@ -88,14 +92,159 @@ And there it is!
 
 ### Boot mode verification
 
+By running the following command, the boot mode is verified:
+
+```sh
+ls /sys/firmware/efi/efivars
+```
+
+![Verified_UEFI_mode.png](img/Verified_UEFI_mode.png)
+
+Since this virtual machine has EFI enabled, it shows the directory without error (and thus is booted in UEFI mode).
+If this directory does not exist on the system, the reader is strongly urged to [check again](/#installation-medium-preparation) and be sure that the system is booting neither from BIOS nor CSM. 
+
 ### Internet connection
+
+A network connection is required. A example won't be shown this time, although it is pretty [Straight-forward](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet).
+
+> Protip: When using Wi-Fi, the live environment offers [iwctl](https://wiki.archlinux.org/title/Iwd#iwctl).
+
+After setting it up, the connection can be verified by [ping](https://wiki.archlinux.org/title/Network_configuration#Ping)ing 
+some host. It is traditional to test a connection by tickling Google's DNS (8.8.8.8):
+
+
+![Pinging_google.png](img/Pinging_google.png)
+
+It stops when interrupted with Ctrl+c.
 
 ### System clock configuration
 
+In the live environment, [System-timesyncd](https://wiki.archlinux.org/title/Systemd-timesyncd) is enabled 
+by default and time is synced automatically once the connection to the internet is established. By running 
+[timedatectl](https://man.archlinux.org/man/timedatectl.1), it can be ensured that the system clock is accurate:
+
+```sh
+timedatectl
+```
+
+It must show an accurate [Universal Time Clock](https://time.is/UTC), that system clock is indeed syncronized, and that 
+NTP service is active. If for some reason NTP is inactive, it can be enabled again by using the ```set-ntp``` command. 
+It takes a boolean argument (true or false) and controls wheter network time synchronization is active and enabled. If
+it's true, this enables and starts the first existing network synchronization service. It is then enabled by running 
+the following command: 
+
+```sh
+timedatectl set-ntp true
+```
+
 ### Disk partitioning
+
+Disks are assigned to a block device, a special file that provides buffered access to a hardware device. Using 
+[fdisk](https://wiki.archlinux.org/title/Fdisk) allows to identify such devices:
+
+![Fdisk_list.png](img/Fdisk_list.png)
+
+This example shows that the storage device is handled by the kernel's 
+[SCSI](https://wiki.archlinux.org/title/Device_file#SCSI) driver subsystem, thus it starts with "sd". It sorts
+the devices from first to last discovered alphabetically. The device used on this guide is the sda device shown 
+in the image, although it might not be the same for the reader. Results ending in rom, loop or airoot may be ignored. 
+
+Guidance through the size of every block device
+is highly encouraged (as in not partitioning that 8G device the live environment booted from when the target 
+device has a 1TB HDD).
+
+To modify partition tables, fdisk may be used.
+
+```sh
+fdisk /dev/sda
+```
+
+![Fdisk_devsda](img/Fdisk_devsda.png)
+
+This setup uses an encrypted root partition and an EFI mode partition only. The use of [swap](https://wiki.archlinux.org/title/Swap)
+is left to the reader's discretion. 
+
+
+> Note: From the author's perspective, it is not necessary since his machine has enough RAM for what he
+has ever done and [hibernation](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation) does not match 
+his usercase.
+
+
+![EFI_partition_creation.png](img/EFI_partition_creation.png)
+
+Creating a new empty [GPT](https://wiki.archlinux.org/title/Partitioning#GUID_Partition_Table) partition label (by typing ```g```) 
+is necessary, for these partitions are expected to boot in UEFI mode. 
+
+Adding a new partition is done by typing ```n```. To make of it the [EFI system partition](https://wiki.archlinux.org/title/EFI_system_partition), the defaults for partition number and first sector are selected. 
+
+In the last sector, the partition's size must be specified. This one must be at least 300 MiB and no more than 1 GiB 
+multiple kernels are going to be installed (most of this later). The author chooses to install 512 MiB, for he likes 
+[powers of two](https://en.wikipedia.org/wiki/Power_of_two).
+
+To give an example, the partition type is changed to EFI System by typing ```t``` and stating the partition type 
+(```1``` for this one).
+
+![Printed_partition_table.png](img/Printed_partition_table.png)
+
+By typing ```n``` again and selecting the default option for everything, the partition table has a second partition
+with the defa2ult partition type: Linux filesystem.
+
+Even though it is not necessary, the image shows the verified partition table through ```v``` and the table itself 
+with ```p```. Now it must be writeen to the disk and exit by typing ```w```.
+
+In order to use luks for the created linux filesystem, an encrypted logical container must be initialized by using 
+[cryptsetup](https://wiki.archlinux.org/title/Dm-crypt/Device_encryption#Cryptsetup_usage):
+
+```sh
+cryptsetup luksFormat /dev/sda2
+```
+
+This prompts the user to create a passphrase.
+
+Via cryptsetup, the container must be opened followed by a placeholder. Any name suffices, but "luks" is chosen 
+by sheer exemplification.
+
+```sh
+cryptsetup open /dev/sda2 luks
+```
+
+The user must enter the created passphrase.
 
 ### Partition formatting
 
+Once the partitions have been created, both must be formatted with their 
+[appropiate file system](https://wiki.archlinux.org/title/File_systems#Types_of_file_systems).
+
+Formatting the EFI partition with FAT32 is done through:
+
+```sh
+mkfs.fat -F 32 /dev/sda1
+```
+
+On the other hand, the root partition is formatted to [btrfs](https://wiki.archlinux.org/title/Btrfs).
+This filesystem has been chosen for its properties, such as [compression](https://wiki.archlinux.org/title/Btrfs#Compression)
+and [snapshot](https://wiki.archlinux.org/title/Btrfs#Snapshots) handling.
+
+```sh
+mkfs.btrfs /dev/mapper/luks
+```
+
+Root and home subvolumes are created within the btrfs partition. This eases the use of snapshots since this guide
+uses timeshift for its convenience out of the box.
+
+```sh
+mount /dev/mapper/luks /mnt
+
+btrfs sub create /mnt/@
+
+btrfs sub create /mnt/@home
+```
+
+the /mnt directory must be umounted in order to use it when mounting the partitions.
+
+```sh
+umount /mnt
+```
+
 ### Partition mounting
 
-### Partition verification
