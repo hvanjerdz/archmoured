@@ -558,19 +558,72 @@
 <h1 id="barebones">Barebones</h1>
 <h2 id="installation">Installation</h2>
 <h3 id="mirrors-selection">Mirrors selection</h3>
+<p>Packages are downloaded from <a href="https://wiki.archlinux.org/title/Mirrors">mirror servers</a>.
+<a href="https://wiki.archlinux.org/title/Reflector">Reflector</a> updates the mirror list by 20 most 
+recently synchronized HTTPS mirrors and sorting them by download rate after connecting to the
+internet on the live system.</p>
+<p>The higher a mirror is placed in the list, the more priority it is given when downloading a package.
+Usually, the one generated on the live system is fine. If not, it may be <a href="https://wiki.archlinux.org/title/Help:Reading#Append,_add,_create,_edit">edited</a>.</p>
 <h3 id="essential-packages-installation">Essential packages installation</h3>
+<p><strong>Optional</strong>: <code>base-devel</code> , <code>vim</code></p>
+<pre><code>pacstrap /mnt base base-devel linux linux-firmware btrfs-progs vim
+</code></pre>
 <h2 id="system-configuration">System configuration</h2>
+<pre><code> EDITOR=vim visudo
+</code></pre>
 <h3 id="fstab">Fstab</h3>
+<pre><code>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+</code></pre>
 <h3 id="chroot">Chroot</h3>
+<pre><code>arch-chroot /mnt/
+</code></pre>
 <h3 id="time-zone">TIme-zone</h3>
+<pre><code>ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+</code></pre>
+<pre><code>hwclock --systohc
+</code></pre>
 <h3 id="localization">Localization</h3>
+<pre><code>locale-gen
+</code></pre>
 <h3 id="network-configuration">Network configuration</h3>
+<pre><code>/etc/hostname
+</code></pre>
 <h3 id="initramfs">Initramfs</h3>
+<pre><code>mkinitcpio -P
+</code></pre>
 <h3 id="password-creation">Password creation</h3>
+<pre><code>passwd
+</code></pre>
 <h3 id="user-creation">User creation</h3>
+<pre><code>useradd -mG wheel &lt;YOUR-USERNAME&gt;
+</code></pre>
+<pre><code>%wheel ALL=(ALL) ALL
+</code></pre>
+<pre><code>%wheel ALL=(ALL) ALL
+</code></pre>
+<pre><code>passwd &lt;YOUR-USERNAME&gt;
+</code></pre>
+<pre><code>pacman -S networkmanager
+</code></pre>
+<pre><code>systemctl enable NetworkManager
+</code></pre>
 <h2 id="bootloader">Bootloader</h2>
 <h3 id="systemd-boot-as-bootloader">Systemd-boot as bootloader</h3>
+<pre><code> bootctl --path=/boot install
+</code></pre>
+<pre><code> echo blkid -s UUID -o value /dev/sda2 &gt;&gt; /boot/loader/entries/arch.conf
+</code></pre>
+<pre><code>vim boot/loader/entries/arch.conf 
+</code></pre>
+<pre><code>vim /boot/loader/loader.conf
+</code></pre>
+<pre><code>exit
+</code></pre>
+<pre><code>umount -a
+</code></pre>
 <h2 id="reboot">Reboot</h2>
+<pre><code>reboot
+</code></pre>
 
 
 
