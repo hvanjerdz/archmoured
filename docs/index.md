@@ -178,8 +178,8 @@ is necessary, for these partitions are expected to boot in UEFI mode.
 Adding a new partition is done by typing ```n```. To make of it the [EFI system partition](https://wiki.archlinux.org/title/EFI_system_partition), the defaults for partition number and first sector are selected. 
 
 In the last sector, the partition's size must be specified. This one must be at least 300 MiB and no more than 1 GiB 
-multiple kernels are going to be installed (most of this later). The author chooses to install 512 MiB, for he likes 
-[powers of two](https://en.wikipedia.org/wiki/Power_of_two).
+if multiple kernels are going to be installed (most of this later on). The author chooses to install 512 MiB, for he 
+likes [powers of two](https://en.wikipedia.org/wiki/Power_of_two).
 
 To give an example, the partition type is changed to EFI System by typing ```t``` and stating the partition type 
 (```1``` for this one).
@@ -187,7 +187,7 @@ To give an example, the partition type is changed to EFI System by typing ```t``
 ![Printed_partition_table.png](img/Printed_partition_table.png)
 
 By typing ```n``` again and selecting the default option for everything, the partition table has a second partition
-with the defa2ult partition type: Linux filesystem.
+with the default partition type: Linux filesystem.
 
 Even though it is not necessary, the image shows the verified partition table through ```v``` and the table itself 
 with ```p```. Now it must be writeen to the disk and exit by typing ```w```.
@@ -201,7 +201,7 @@ cryptsetup luksFormat /dev/sda2
 
 This prompts the user to create a passphrase.
 
-Via cryptsetup, the container must be opened followed by a placeholder. Any name suffices, but "luks" is chosen 
+Via cryptsetup, the container must be opened followed by a placeholder. Any name suffices, but "crypt" is chosen 
 by sheer exemplification.
 
 ```sh
@@ -209,6 +209,8 @@ cryptsetup open /dev/sda2 luks
 ```
 
 The user must enter the created passphrase.
+
+![Cryptsetup_sda2.png](img/Cryptsetup_sda2.png)
 
 ### Partition formatting
 
@@ -226,11 +228,16 @@ This filesystem has been chosen for its properties, such as [compression](https:
 and [snapshot](https://wiki.archlinux.org/title/Btrfs#Snapshots) handling.
 
 ```sh
-mkfs.btrfs /dev/mapper/luks
+mkfs.btrfs /dev/mapper/crypt
 ```
 
+![Mkfs_btrfs.png](img/Mkfs_btrfs.png)
+
+### Partition mounting
+
 Root and home subvolumes are created within the btrfs partition. This eases the use of snapshots since this guide
-uses timeshift for its convenience out of the box.
+uses timeshift for its convenience out of the box. To manually mount a file system located on a partition to a 
+directory, [mount](https://man.archlinux.org/man/mount.8) is used. 
 
 ```sh
 mount /dev/mapper/luks /mnt
@@ -240,11 +247,42 @@ btrfs sub create /mnt/@
 btrfs sub create /mnt/@home
 ```
 
-the /mnt directory must be umounted in order to use it when mounting the partitions.
+The /mnt directory must be umounted in order to use it when mounting the partitions.
 
 ```sh
 umount /mnt
 ```
 
-### Partition mounting
+![Mount_subvolumes.png](img/Mount_subvolumes.png)
 
+The recently created subvolumes must me mounted.
+
+There are several options specified. The option ```noatime``` option fully disables writing file access times to 
+the drive every time you read a file, while ```nodiratime``` doption disables the writing of file access times only 
+for directories while other files still get access times written.  ```compress=zstd``` makes use of[ 
+    zstd](https://man.archlinux.org/man/zstd.1.en). ```space_cache=v2``` gives control the free space cache. 
+The free space cache greatly improves performance when reading block group free space into memory. Version 2
+adds a new B-tree called the free space tree, addressing the issue that version 1 may have on largefilesystems.
+. ```ssd```optimizes the process on [Solid State Drive](https://wiki.archlinux.org/title/Solid_state_drive)s.
+
+```
+mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@ /dev/mapper/crypt /mnt
+```
+
+Making a directory to not only store the encrypted  partition, but the home subvolume and EFI partition too.
+
+```
+mkdir -p /mnt/{boot,home}
+```
+
+Mounting home subvolume with the options that were given before.
+
+```
+mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@home /dev/mapper/crypt /mnt/home
+```
+
+Mounting EFI partition on boot. No option is needed.
+
+```
+mount /dev/sda1 /mnt/boot
+```
