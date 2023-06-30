@@ -94,6 +94,9 @@ echo KEYMAP=la-latin1 > /etc/vconsole.conf
 
 ### Network configuration
 
+The following command creates the hostname file an adds the system's hostname. 
+In this example, ```myhost``` is the hostname:
+
 ```
 echo myhost > /etc/hostname
 ```
@@ -110,29 +113,31 @@ vim /etc/hosts
 vim /etc/mkinitcpio.conf
 ```
 
-- base: this hook provides crucial runtime necessities for booting.
+- `base`: provides crucial runtime necessities for booting.
 
-- udev: adds the udev daemon to the initramfs, allowing for dynamic loading of modules and reliable detection of 
+- `udev`: adds the udev daemon to the initramfs, allowing for dynamic loading of modules and reliable detection of 
 the root device via tags (UUID).
 
-- systemd: this install a basic systemd setup in your initramfs, and is meant to
-replace the 'base', 'usr', 'udev' and 'resume' hooks. Other hooks with runtime
-components will need to be ported, and will not work as intended. You also may
-wish to still include the 'base' hook (before this hook) to ensure that a
-rescue shell exists on your initramfs.
+- `systemd`: installs a basic systemd setup in the initramfs, and is meant toreplace the 'base', 'usr', 'udev' 
+and 'resume' hooks. Other hooks with runtime components will need to be ported, and will not work as intended. 
+Including ```base``` hook before this one to ensure that a rescue shell exists on the initramfs is a good idea.
 
-- autodetect: This hook shrinks your initramfs to a smaller size by autodetecting the needed
+- `autodetect`: shrinks the initramfs to a smaller size by autodetecting the needed
 modules.
 
-- keyboard: This hook loads the necessary modules for keyboard devices.
-modconf: This hook installs modprobe configuration files from /etc/modprobe.d and
+- `keyboard`: loads the necessary modules for keyboard devices.
+
+- `modconf`: installs modprobe configuration files from /etc/modprobe.d and
 /usr/lib/modprobe.d.
 
-- block: This hook loads the necessary modules for most block devices using pata, sata,
+- `block`: loads the necessary modules for most block devices using pata, sata,
 scsi, firewire, usb, or mmc.
 
-- sd-encrypt: This hook allows for an encrypted root device with systemd initramfs.
-filesystems: This hook adds filesystems modules to the image.
+- `sd-encrypt`: allows for an encrypted root device with systemd initramfs.
+
+- `filesystems`: adds filesystems modules to the image.
+
+![Mkinitcpio_config.png](img/Mkinitcpio_config.png)
 
 ```
 mkinitcpio -P
@@ -174,6 +179,8 @@ pacman -S linux-headers networkmanager dialog wpa_supplicant mtools dosfstools g
 systemctl enable NetworkManager
 ```
 
+![Enable_nm.png](img/Enable_nm.png)
+
 ## Bootloader
 
 ### Systemd-boot as bootloader
@@ -182,28 +189,37 @@ systemctl enable NetworkManager
  bootctl --path=/boot install
 ```
 
+![Systemd-boot_install.png](img/Systemd-boot_install.png)
+
 ```
- echo blkid -s UUID -o value /dev/sda2 >> /boot/loader/entries/arch.conf
+ echo $(blkid -s UUID -o value /dev/sda2) >> /boot/loader/entries/arch.conf
 ```
+
+![UUID_sda2.png](img/UUID_sda2.png)
 
 ```
 vim boot/loader/entries/arch.conf 
 ```
+![Archconf.png](img/Archconf.png)
 
 ```
 vim /boot/loader/loader.conf
 ```
+
+![Loaderconf_config.png](img/Loaderconf_config.png)
+
+## Reboot
 
 ```
 exit
 ```
 
 ```
-umount -a
+umount -R /mnt
 ```
-
-## Reboot
 
 ```
 reboot
 ```
+
+![Preparing_reboot.png](img/Preparing_reboot.png)

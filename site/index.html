@@ -655,13 +655,27 @@ btrfs sub create /mnt/@home
 </code></pre>
 <p><img alt="Mount_subvolumes.png" src="img/Mount_subvolumes.png" /></p>
 <p>The recently created subvolumes must me mounted.</p>
-<p>There are several options specified. The option <code>noatime</code> option fully disables writing file access times to 
-the drive every time you read a file, while <code>nodiratime</code> doption disables the writing of file access times only 
-for directories while other files still get access times written.  <code>compress=zstd</code> makes use of<a href="https://man.archlinux.org/man/zstd.1.en"> 
-    zstd</a>. <code>space_cache=v2</code> gives control the free space cache. 
-The free space cache greatly improves performance when reading block group free space into memory. Version 2
-adds a new B-tree called the free space tree, addressing the issue that version 1 may have on largefilesystems.
-. <code>ssd</code>optimizes the process on <a href="https://wiki.archlinux.org/title/Solid_state_drive">Solid State Drive</a>s.</p>
+<p>There are several options specified.</p>
+<ul>
+<li>
+<p><code>noatime</code>: fully disables writing file access times to the drive every time you read a file.</p>
+</li>
+<li>
+<p><code>nodiratime</code>: disables the writing of file access times only for directories while other files 
+still get access times written.</p>
+</li>
+<li>
+<p><code>compress=zstd</code> makes use of <a href="https://man.archlinux.org/man/zstd.1.en">zstd</a>. </p>
+</li>
+<li>
+<p><code>space_cache</code> gives control the free space cache. The free space cache greatly improves performance when 
+reading block group free space into memory. Version 2 adds a new B-tree called the free space tree, addressing 
+the issue that version 1 may have on large filesystems. </p>
+</li>
+<li>
+<p><code>ssd</code>optimizes the process on <a href="https://wiki.archlinux.org/title/Solid_state_drive">Solid State Drives</a>.</p>
+</li>
+</ul>
 <pre><code>mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@ /dev/mapper/crypt /mnt
 </code></pre>
 <p>Using the <code>--parents</code> option to make parents directories as needed. It is needed for the home subvolume

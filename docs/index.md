@@ -257,13 +257,20 @@ umount /mnt
 
 The recently created subvolumes must me mounted.
 
-There are several options specified. The option ```noatime``` option fully disables writing file access times to 
-the drive every time you read a file, while ```nodiratime``` doption disables the writing of file access times only 
-for directories while other files still get access times written.  ```compress=zstd``` makes use of[ 
-    zstd](https://man.archlinux.org/man/zstd.1.en). ```space_cache=v2``` gives control the free space cache. 
-The free space cache greatly improves performance when reading block group free space into memory. Version 2
-adds a new B-tree called the free space tree, addressing the issue that version 1 may have on largefilesystems.
-. ```ssd```optimizes the process on [Solid State Drive](https://wiki.archlinux.org/title/Solid_state_drive)s.
+There are several options specified.
+
+- ```noatime```: fully disables writing file access times to the drive every time you read a file.
+
+- ```nodiratime```: disables the writing of file access times only for directories while other files 
+still get access times written.
+
+- ```compress=zstd``` makes use of [zstd](https://man.archlinux.org/man/zstd.1.en). 
+
+- ```space_cache``` gives control the free space cache. The free space cache greatly improves performance when 
+reading block group free space into memory. Version 2 adds a new B-tree called the free space tree, addressing 
+the issue that version 1 may have on large filesystems. 
+
+- ```ssd```optimizes the process on [Solid State Drives](https://wiki.archlinux.org/title/Solid_state_drive).
 
 ```
 mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@ /dev/mapper/crypt /mnt
