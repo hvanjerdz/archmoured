@@ -664,7 +664,8 @@ adds a new B-tree called the free space tree, addressing the issue that version 
 . <code>ssd</code>optimizes the process on <a href="https://wiki.archlinux.org/title/Solid_state_drive">Solid State Drive</a>s.</p>
 <pre><code>mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@ /dev/mapper/crypt /mnt
 </code></pre>
-<p>Making a directory to not only store the encrypted  partition, but the home subvolume and EFI partition too.</p>
+<p>Using the <code>--parents</code> option to make parents directories as needed. It is needed for the home subvolume
+and also the EFI partition.</p>
 <pre><code>mkdir -p /mnt/{boot,home}
 </code></pre>
 <p>Mounting home subvolume with the options that were given before.</p>
@@ -673,6 +674,7 @@ adds a new B-tree called the free space tree, addressing the issue that version 
 <p>Mounting EFI partition on boot. No option is needed.</p>
 <pre><code>mount /dev/sda1 /mnt/boot
 </code></pre>
+<p><img alt="Mount_partitions.png" src="img/Mount_partitions.png" /></p>
 
 
 

@@ -269,7 +269,8 @@ adds a new B-tree called the free space tree, addressing the issue that version 
 mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@ /dev/mapper/crypt /mnt
 ```
 
-Making a directory to not only store the encrypted  partition, but the home subvolume and EFI partition too.
+Using the ```--parents``` option to make parents directories as needed. It is needed for the home subvolume
+and also the EFI partition.
 
 ```
 mkdir -p /mnt/{boot,home}
@@ -286,3 +287,5 @@ Mounting EFI partition on boot. No option is needed.
 ```
 mount /dev/sda1 /mnt/boot
 ```
+
+![Mount_partitions.png](img/Mount_partitions.png)
