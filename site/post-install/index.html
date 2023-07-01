@@ -246,6 +246,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#aur" class="md-nav__link">
+    AUR
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#snapshots" class="md-nav__link">
     Snapshots
   </a>
@@ -309,6 +316,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#aur" class="md-nav__link">
+    AUR
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#snapshots" class="md-nav__link">
     Snapshots
   </a>
@@ -341,32 +355,33 @@
 <p><img alt="Bootloader.png" src="../img/Bootloader.png" /></p>
 <p><img alt="Enter_passphrase.png" src="../img/Enter_passphrase.png" /></p>
 <p><img alt="Set_bigger_font_tty.png" src="../img/Set_bigger_font_tty.png" /></p>
-<h2 id="snapshots">Snapshots</h2>
-<pre><code>cd
+<h2 id="aur">AUR</h2>
+<pre><code class="language-sh">cd
 sudo pacman -Syu
 </code></pre>
 <p><img alt="Pacman_syuuuuu.png" src="../img/Pacman_syuuuuu.png" /></p>
-<pre><code>cd Downloads/
+<pre><code class="language-sh">cd Downloads/
 sudo pacman -S go
 git clone https://aur.archlinux.org/yay.git
 cd yay/
 makepkg -i
 </code></pre>
 <p><img alt="Yay_install.png" src="../img/Yay_install.png" /></p>
-<pre><code>yay -S timeshift
+<h2 id="snapshots">Snapshots</h2>
+<pre><code class="language-sh">yay -S timeshift
 sudo timeshift --create --comments &quot;Testing...&quot;
 sudo timeshift --list
 </code></pre>
 <p><img alt="Timeshift_testing.png" src="../img/Timeshift_testing.png" /></p>
-<pre><code>sudo pacman -S cowsay
+<pre><code class="language-sh">sudo pacman -S cowsay
 </code></pre>
 <p><img alt="Cowsay_hi" src="../img/Cowsay_hi.png" /></p>
-<pre><code>sudo timeshift --restore
+<pre><code class="language-sh">sudo timeshift --restore
 </code></pre>
-<p><img alt="Timeshift_restore" src="../img/Timeshift_restore.png" /></p>
-<pre><code>reboot
+<p><img alt="Timeshift_restore.png" src="../img/Timeshift_restore.png" /></p>
+<pre><code class="language-sh">reboot
 </code></pre>
-<p><img alt="Successful_restore" src="../img/Successful_restore.png" /></p>
+<p><img alt="Successful_restore.png" src="../img/Successful_restore.png" /></p>
 <h2 id="graphical-user-interface">Graphical User Interface</h2>
 <p>There it is. A minimal install. For desktop use, it is highly recomended to use a graphical
 environment. Choosing one can be a true hassle. For this, virtually any guide suffices 

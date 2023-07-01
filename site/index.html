@@ -509,7 +509,7 @@ within code elements for easy identification and differentiation from regular te
 it is not recommended).</p>
 <h3 id="installation-image">Installation image</h3>
 <p>In order to obtain an installation image, it is suggested to download an ISO file via HTTP 
-from one of the mirror sites listed on the <a href="https://archlinux.org/download/">Arch Linux HTTP Direct Downloads</a>.
+from one of the mirror sites listed in the <a href="https://archlinux.org/download/">Arch Linux HTTP Direct Downloads</a>.
 It is recomended to verify the ISO signature to make sure it is <a href="https://www.theregister.com/2016/02/21/linux_mint_hacked_malwareinfected_isos_linked_from_official_site/">safe to use</a>.</p>
 <p>Once the site of choice has been selected, it greets with an index that contains the needed files. </p>
 <p><img alt="Index of /iso/" src="img/Index_of_ISO.png" /></p>
@@ -560,7 +560,7 @@ To set the already located layout, the loadkeys command followed by the chosen l
 <p>Since this virtual machine has EFI enabled, it shows the directory without error (and thus is booted in UEFI mode).
 If this directory does not exist on the system, the reader is strongly urged to <a href="/#installation-medium-preparation">check again</a> and be sure that the system is booting neither from BIOS nor CSM. </p>
 <h3 id="internet-connection">Internet connection</h3>
-<p>A network connection is required. A example won't be shown this time, although it is pretty <a href="https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet">Straight-forward</a>.</p>
+<p>A network connection is required. A example won't be shown this time, although it is pretty <a href="https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet">straight-forward</a>.</p>
 <blockquote>
 <p>Protip: When using Wi-Fi, the live environment offers <a href="https://wiki.archlinux.org/title/Iwd#iwctl">iwctl</a>.</p>
 </blockquote>
@@ -623,7 +623,7 @@ with <code>p</code>. Now it must be writeen to the disk and exit by typing <code
 </code></pre>
 <p>This prompts the user to create a passphrase.</p>
 <p>Via cryptsetup, the container must be opened followed by a placeholder. Any name suffices, but "crypt" is chosen 
-by sheer exemplification.</p>
+by sheer exemplification:</p>
 <pre><code class="language-sh">cryptsetup open /dev/sda2 luks
 </code></pre>
 <p>The user must enter the created passphrase.</p>
@@ -636,26 +636,26 @@ by sheer exemplification.</p>
 </code></pre>
 <p>On the other hand, the root partition is formatted to <a href="https://wiki.archlinux.org/title/Btrfs">btrfs</a>.
 This filesystem has been chosen for its properties, such as <a href="https://wiki.archlinux.org/title/Btrfs#Compression">compression</a>
-and <a href="https://wiki.archlinux.org/title/Btrfs#Snapshots">snapshot</a> handling.</p>
+and <a href="https://wiki.archlinux.org/title/Btrfs#Snapshots">snapshot</a> handling:</p>
 <pre><code class="language-sh">mkfs.btrfs /dev/mapper/crypt
 </code></pre>
 <p><img alt="Mkfs_btrfs.png" src="img/Mkfs_btrfs.png" /></p>
 <h3 id="partition-mounting">Partition mounting</h3>
 <p>Root and home subvolumes are created within the btrfs partition. This eases the use of snapshots since this guide
 uses timeshift for its convenience out of the box. To manually mount a file system located on a partition to a 
-directory, <a href="https://man.archlinux.org/man/mount.8">mount</a> is used. </p>
+directory, <a href="https://man.archlinux.org/man/mount.8">mount</a> is used: </p>
 <pre><code class="language-sh">mount /dev/mapper/luks /mnt
 
 btrfs sub create /mnt/@
 
 btrfs sub create /mnt/@home
 </code></pre>
-<p>The /mnt directory must be umounted in order to use it when mounting the partitions.</p>
+<p>The /mnt directory must be umounted in order to use it when mounting the partitions:</p>
 <pre><code class="language-sh">umount /mnt
 </code></pre>
 <p><img alt="Mount_subvolumes.png" src="img/Mount_subvolumes.png" /></p>
 <p>The recently created subvolumes must me mounted.</p>
-<p>There are several options specified.</p>
+<p>There are several options specified:</p>
 <ul>
 <li>
 <p><code>noatime</code>: fully disables writing file access times to the drive every time you read a file.</p>
@@ -676,17 +676,17 @@ the issue that version 1 may have on large filesystems. </p>
 <p><code>ssd</code>optimizes the process on <a href="https://wiki.archlinux.org/title/Solid_state_drive">Solid State Drives</a>.</p>
 </li>
 </ul>
-<pre><code>mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@ /dev/mapper/crypt /mnt
+<pre><code class="language-sh">mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@ /dev/mapper/crypt /mnt
 </code></pre>
 <p>Using the <code>--parents</code> option to make parents directories as needed. It is needed for the home subvolume
 and also the EFI partition.</p>
-<pre><code>mkdir -p /mnt/{boot,home}
+<pre><code class="language-sh">mkdir -p /mnt/{boot,home}
 </code></pre>
-<p>Mounting home subvolume with the options that were given before.</p>
-<pre><code>mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@home /dev/mapper/crypt /mnt/home
+<p>Mounting home subvolume with the options that were given before:</p>
+<pre><code class="language-sh">mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@home /dev/mapper/crypt /mnt/home
 </code></pre>
-<p>Mounting EFI partition on boot. No option is needed.</p>
-<pre><code>mount /dev/sda1 /mnt/boot
+<p>Mounting EFI partition on boot. No option is needed:</p>
+<pre><code class="language-sh">mount /dev/sda1 /mnt/boot
 </code></pre>
 <p><img alt="Mount_partitions.png" src="img/Mount_partitions.png" /></p>
 

@@ -6,16 +6,16 @@
 
 ![Set_bigger_font_tty.png](img/Set_bigger_font_tty.png)
 
-## Snapshots
+## AUR
 
-```
+```sh
 cd
 sudo pacman -Syu
 ```
 
 ![Pacman_syuuuuu.png](img/Pacman_syuuuuu.png)
 
-```
+```sh
 cd Downloads/
 sudo pacman -S go
 git clone https://aur.archlinux.org/yay.git
@@ -25,7 +25,9 @@ makepkg -i
 
 ![Yay_install.png](img/Yay_install.png)
 
-```
+## Snapshots
+
+```sh
 yay -S timeshift
 sudo timeshift --create --comments "Testing..."
 sudo timeshift --list
@@ -33,23 +35,23 @@ sudo timeshift --list
 
 ![Timeshift_testing.png](img/Timeshift_testing.png)
 
-```
+```sh
 sudo pacman -S cowsay
 ```
 
 ![Cowsay_hi](img/Cowsay_hi.png)
 
-```
+```sh
 sudo timeshift --restore
 ```
 
-![Timeshift_restore](img/Timeshift_restore.png)
+![Timeshift_restore.png](img/Timeshift_restore.png)
 
-```
+```sh
 reboot
 ```
 
-![Successful_restore](img/Successful_restore.png)
+![Successful_restore.png](img/Successful_restore.png)
 
 ## Graphical User Interface
 

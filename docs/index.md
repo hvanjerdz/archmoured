@@ -14,7 +14,7 @@ it is not recommended).
 ### Installation image
 
 In order to obtain an installation image, it is suggested to download an ISO file via HTTP 
-from one of the mirror sites listed on the [Arch Linux HTTP Direct Downloads](https://archlinux.org/download/).
+from one of the mirror sites listed in the [Arch Linux HTTP Direct Downloads](https://archlinux.org/download/).
 It is recomended to verify the ISO signature to make sure it is [safe to use](https://www.theregister.com/2016/02/21/linux_mint_hacked_malwareinfected_isos_linked_from_official_site/).
 
 Once the site of choice has been selected, it greets with an index that contains the needed files. 
@@ -27,7 +27,7 @@ Downloading the ISO file and one of the checksum txt files is necessary to see i
 
 It does! The SHA256 checksum can also be seen on the official website.
 
-If the reader is _extra_ paranoid, the ISO PGP signature (the iso.sig file also found on the index) can be downloaded 
+If the reader is *extra* paranoid, the ISO PGP signature (the iso.sig file also found on the index) can be downloaded 
 in the same directory and verified (assuming that [GnuPG](https://www.gnupg.org/), a libre encryption tool is already 
 installed) with:
 
@@ -105,7 +105,7 @@ If this directory does not exist on the system, the reader is strongly urged to 
 
 ### Internet connection
 
-A network connection is required. A example won't be shown this time, although it is pretty [Straight-forward](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet).
+A network connection is required. A example won't be shown this time, although it is pretty [straight-forward](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet).
 
 > Protip: When using Wi-Fi, the live environment offers [iwctl](https://wiki.archlinux.org/title/Iwd#iwctl).
 
@@ -202,7 +202,7 @@ cryptsetup luksFormat /dev/sda2
 This prompts the user to create a passphrase.
 
 Via cryptsetup, the container must be opened followed by a placeholder. Any name suffices, but "crypt" is chosen 
-by sheer exemplification.
+by sheer exemplification:
 
 ```sh
 cryptsetup open /dev/sda2 luks
@@ -225,7 +225,7 @@ mkfs.fat -F 32 /dev/sda1
 
 On the other hand, the root partition is formatted to [btrfs](https://wiki.archlinux.org/title/Btrfs).
 This filesystem has been chosen for its properties, such as [compression](https://wiki.archlinux.org/title/Btrfs#Compression)
-and [snapshot](https://wiki.archlinux.org/title/Btrfs#Snapshots) handling.
+and [snapshot](https://wiki.archlinux.org/title/Btrfs#Snapshots) handling:
 
 ```sh
 mkfs.btrfs /dev/mapper/crypt
@@ -237,7 +237,7 @@ mkfs.btrfs /dev/mapper/crypt
 
 Root and home subvolumes are created within the btrfs partition. This eases the use of snapshots since this guide
 uses timeshift for its convenience out of the box. To manually mount a file system located on a partition to a 
-directory, [mount](https://man.archlinux.org/man/mount.8) is used. 
+directory, [mount](https://man.archlinux.org/man/mount.8) is used: 
 
 ```sh
 mount /dev/mapper/luks /mnt
@@ -247,7 +247,7 @@ btrfs sub create /mnt/@
 btrfs sub create /mnt/@home
 ```
 
-The /mnt directory must be umounted in order to use it when mounting the partitions.
+The /mnt directory must be umounted in order to use it when mounting the partitions:
 
 ```sh
 umount /mnt
@@ -257,7 +257,7 @@ umount /mnt
 
 The recently created subvolumes must me mounted.
 
-There are several options specified.
+There are several options specified:
 
 - ```noatime```: fully disables writing file access times to the drive every time you read a file.
 
@@ -272,26 +272,26 @@ the issue that version 1 may have on large filesystems.
 
 - ```ssd```optimizes the process on [Solid State Drives](https://wiki.archlinux.org/title/Solid_state_drive).
 
-```
+```sh
 mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@ /dev/mapper/crypt /mnt
 ```
 
 Using the ```--parents``` option to make parents directories as needed. It is needed for the home subvolume
 and also the EFI partition.
 
-```
+```sh
 mkdir -p /mnt/{boot,home}
 ```
 
-Mounting home subvolume with the options that were given before.
+Mounting home subvolume with the options that were given before:
 
-```
+```sh
 mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@home /dev/mapper/crypt /mnt/home
 ```
 
-Mounting EFI partition on boot. No option is needed.
+Mounting EFI partition on boot. No option is needed:
 
-```
+```sh
 mount /dev/sda1 /mnt/boot
 ```
 
