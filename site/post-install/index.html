@@ -352,39 +352,76 @@
 
 
 <h1 id="post-installation">Post-Installation</h1>
+<p>Once booted, the bootloader is displayed (if everything was done correctly).</p>
 <p><img alt="Bootloader.png" src="../img/Bootloader.png" /></p>
+<p>The password created before is requested before getting into the system.</p>
 <p><img alt="Enter_passphrase.png" src="../img/Enter_passphrase.png" /></p>
+<p>A larger font is selected.</p>
 <p><img alt="Set_bigger_font_tty.png" src="../img/Set_bigger_font_tty.png" /></p>
 <h2 id="aur">AUR</h2>
-<pre><code class="language-sh">cd
-sudo pacman -Syu
+<p>The <a href="https://wiki.archlinux.org/title/Arch_User_Repository">Arch User Repository (AUR)</a> is a community-driven 
+repository for Arch users. It contains package descriptions (PKGBUILDs) that allows users to compile a package 
+from source with makepkg and then install it via pacman. Every AUR package can be found <a href="https://aur.archlinux.org/">here</a>
+This is why installing <code>base-devel</code> is important if using the AUR is planned.</p>
+<p><a href="https://wiki.archlinux.org/title/Pacman">Pacman</a> is a package manager that is considered a huge advantage
+of Arch Linux and one of its major distinguishing features. It combines a simple binary package format with 
+an easy-to-use build system. All packages offered by pacman are found in the <a href="https://archlinux.org/packages/">package search</a>
+section.</p>
+<p>With the purpose of having an up-to-date system, the repository databases are synchronized and the packages are updated with:</p>
+<pre><code class="language-sh">sudo pacman -Syu
 </code></pre>
 <p><img alt="Pacman_syuuuuu.png" src="../img/Pacman_syuuuuu.png" /></p>
+<p>For convenience, an Arch User Repository helper is installed. These automate usage of the AUR. Tasks such as package search, 
+resolving of dependencies, retrieving and building, and others are automated. This guide uses <a href="https://aur.archlinux.org/packages/yay">yay</a>, although virtually any other helper can be used. </p>
+<p>Even though it is not necessary, an specific directory is selected to install this package's directory so everything 
+is neat and tidy. The following example uses the <code>~/Downloads</code> directory created when installing <code>xdg-user-dirs</code>:</p>
 <pre><code class="language-sh">cd Downloads/
-sudo pacman -S go
-git clone https://aur.archlinux.org/yay.git
-cd yay/
-makepkg -i
+</code></pre>
+<p>Since yay is written in <a href="https://go.dev/learn/">Go</a>, it is installed beforehand:</p>
+<pre><code class="language-sh">sudo pacman -S go
+</code></pre>
+<p>The package's git repository is cloned:</p>
+<pre><code class="language-sh">git clone https://aur.archlinux.org/yay.git
+</code></pre>
+<p>The directory is changed to the one containing the package's <a href="https://wiki.archlinux.org/title/PKGBUILD">PKGBUILD</a>:</p>
+<pre><code class="language-sh">cd yay/
+</code></pre>
+<p>The package is madeby running <code>makepkg</code>. The <code>-i</code> flag installs the package if built successfully, so it is not
+necessary to do it manually:</p>
+<pre><code class="language-sh">makepkg -i
 </code></pre>
 <p><img alt="Yay_install.png" src="../img/Yay_install.png" /></p>
 <h2 id="snapshots">Snapshots</h2>
+<p>Now that yay is installed, it is used to install timeshift:</p>
 <pre><code class="language-sh">yay -S timeshift
-sudo timeshift --create --comments &quot;Testing...&quot;
-sudo timeshift --list
+</code></pre>
+<p><a href="https://github.com/linuxmint/timeshift">Timeshift</a> is a system restore tool. It creates filesystem 
+<a href="https://en.wikipedia.org/wiki/Snapshot_%28computer_storage%29">snapshots</a> using BTRFS snapshots. </p>
+<p>A snapshot is created to test its functionality:</p>
+<pre><code class="language-sh">sudo timeshift --create --comments &quot;Testing...&quot;
+</code></pre>
+<p>Its creation is confirmed by listing the system's snapshots:</p>
+<pre><code class="language-sh">sudo timeshift --list
 </code></pre>
 <p><img alt="Timeshift_testing.png" src="../img/Timeshift_testing.png" /></p>
+<p>It is. Any package is installed to test that restoration works. This example makes use of 
+<a href="https://archlinux.org/packages/?name=cowsay">cowsay</a>:</p>
 <pre><code class="language-sh">sudo pacman -S cowsay
 </code></pre>
 <p><img alt="Cowsay_hi" src="../img/Cowsay_hi.png" /></p>
+<p>Now that the package is installed, the created snapshot is restored. If this recently installed package is not
+there anymore, it means it worked:</p>
 <pre><code class="language-sh">sudo timeshift --restore
 </code></pre>
 <p><img alt="Timeshift_restore.png" src="../img/Timeshift_restore.png" /></p>
+<p>The system is rebooted so that the snapshot becomes active:</p>
 <pre><code class="language-sh">reboot
 </code></pre>
+<p>It was. Cowsay is not installed anymore. Thus, the system is finally ready.</p>
 <p><img alt="Successful_restore.png" src="../img/Successful_restore.png" /></p>
 <h2 id="graphical-user-interface">Graphical User Interface</h2>
 <p>There it is. A minimal install. For desktop use, it is highly recomended to use a graphical
-environment. Choosing one can be a true hassle. For this, virtually any guide suffices 
+environment. Choosing one can be a true hassle. For this, virtually any other guide suffices 
 since this distro is well-known for its ricing community. For now, Archmoured encourages the 
 usage of <a href="https://wiki.archlinux.org/title/Xfce">Xfce</a>, for it brings a truly stable 
 experience.</p>

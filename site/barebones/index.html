@@ -583,7 +583,6 @@ Usually, the one generated on the live system is fine. If not, it may be
 <p><a href="https://wiki.archlinux.org/title/Pacstrap">Pacstrap</a> is designed to create a new system installation from scratch.
 It is used to install specified packages into a given directory after setting up the mountpoints defined before
 (specifically into the root partition):</p>
-<p><strong>Optional</strong>: <code>base-devel</code> , <code>vim</code>, <code>intel-ucode</code>, <code>amd-ucode</code></p>
 <pre><code class="language-sh">pacstrap /mnt base base-devel linux linux-firmware btrfs-progs vim intel-ucode
 </code></pre>
 <ul>
@@ -780,23 +779,48 @@ NetworkManager to start automatically at boot:</p>
 <p><img alt="Enable_nm.png" src="../img/Enable_nm.png" /></p>
 <h2 id="bootloader">Bootloader</h2>
 <h3 id="systemd-boot-as-bootloader">Systemd-boot as bootloader</h3>
+<p>A <a href="https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader">bootloader</a> is a piece of software 
+started by the firmware. It is responsible for loading the kernel with the wanted kernel parameters 
+and any external initramfs images.</p>
+<p>This guide uses <a href="https://wiki.archlinux.org/title/Systemd-boot">Systemd-boot</a>. It is a pretty straight-forward
+boot manager. It is already included with Arch's <a href="https://wiki.archlinux.org/title/Init">init</a> system, 
+<a href="https://wiki.archlinux.org/title/Systemd">Systemd</a>. </p>
+<p><a href="https://man.archlinux.org/man/bootctl.1">Bootctl</a> is used to install systemd-boot to the EFI 
+System Partition's (ESP) mountpoint. In this case, it is mounted to <code>/boot</code>, for separation of concerns
+between OS and EFI related files is not wanted:</p>
 <pre><code class="language-sh"> bootctl --path=/boot install
 </code></pre>
 <p><img alt="Systemd-boot_install.png" src="../img/Systemd-boot_install.png" /></p>
+<p>Systemd-boot searches for boot menu items. In this specific configuration, in <code>/boot/loader/entries/arch.conf</code>.
+In order to use encryption, the root's UUID (Universally unique identifier) is used to identify such partition.
+It is added to the file so it is not necessary to manually copy all of those characters:</p>
 <pre><code class="language-sh"> echo $(blkid -s UUID -o value /dev/sda2) &gt;&gt; /boot/loader/entries/arch.conf
 </code></pre>
 <p><img alt="UUID_sda2.png" src="../img/UUID_sda2.png" /></p>
+<p>The file is then edited:</p>
 <pre><code class="language-sh">vim boot/loader/entries/arch.conf 
 </code></pre>
 <p><img alt="Archconf.png" src="../img/Archconf.png" /></p>
+<ul>
+<li><code>title</code>: The Operating System name.</li>
+<li><code>linux</code>: EFI program to start. Relative to the EFI System Partition.</li>
+<li><code>initrd</code>: It is used to state kernel parameters. </li>
+<li><code>options</code>: Options to pass to the EFI program or kernel parameters.</li>
+</ul>
+<p>Since this is a linux only boot, <code>linux</code> can be used instead of <code>efi</code>. The syntax differs in both cases.</p>
+<p>The loader configurations is found in <code>/boot/loader/loader.conf</code>:</p>
 <pre><code class="language-sh">vim /boot/loader/loader.conf
 </code></pre>
+<p>The following configuration is added:</p>
 <p><img alt="Loaderconf_config.png" src="../img/Loaderconf_config.png" /></p>
 <h2 id="reboot">Reboot</h2>
+<p>It is required to type <code>exit</code> or press <code>Ctrl+d</code> to exit the chroot environment:</p>
 <pre><code class="language-sh">exit
 </code></pre>
+<p>Even though it is not a must, the used partitions may be manually unmounted.</p>
 <pre><code class="language-sh">umount -R /mnt
 </code></pre>
+<p>The following command restarts the machine:</p>
 <pre><code class="language-sh">reboot
 </code></pre>
 <p><img alt="Preparing_reboot.png" src="../img/Preparing_reboot.png" /></p>

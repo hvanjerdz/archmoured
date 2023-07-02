@@ -13,7 +13,7 @@ it is not recommended).
 
 ### Installation image
 
-In order to obtain an installation image, it is suggested to download an ISO file via HTTP 
+To obtain an installation image, it is suggested to download an ISO file via HTTP 
 from one of the mirror sites listed in the [Arch Linux HTTP Direct Downloads](https://archlinux.org/download/).
 It is recomended to verify the ISO signature to make sure it is [safe to use](https://www.theregister.com/2016/02/21/linux_mint_hacked_malwareinfected_isos_linked_from_official_site/).
 
@@ -60,7 +60,7 @@ Once booted, a shell prompt is presented.
 
 ### (Optional) Set console font
 
-Those small characters may not be to everyone's liking. In order for the screenshots to be readable, a larger font has been
+Those small characters may not be to everyone's liking. With the aim of making the shown screenshots readable, a larger font has been
 selected. 
 
 ![Larger_font.png](img/Larger_font.png)
@@ -247,7 +247,7 @@ btrfs sub create /mnt/@
 btrfs sub create /mnt/@home
 ```
 
-The /mnt directory must be umounted in order to use it when mounting the partitions:
+The /mnt directory must be unmounted so that it can be used when mounting the partitions:
 
 ```sh
 umount /mnt

@@ -20,8 +20,6 @@ Usually, the one generated on the live system is fine. If not, it may be
 It is used to install specified packages into a given directory after setting up the mountpoints defined before
 (specifically into the root partition):
 
-**Optional**: ```base-devel``` , ```vim```, ```intel-ucode```, ```amd-ucode```
-
 ```sh
 pacstrap /mnt base base-devel linux linux-firmware btrfs-progs vim intel-ucode
 ```
@@ -270,11 +268,27 @@ systemctl enable NetworkManager
 
 ### Systemd-boot as bootloader
 
+A [bootloader](https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader) is a piece of software 
+started by the firmware. It is responsible for loading the kernel with the wanted kernel parameters 
+and any external initramfs images.
+
+This guide uses [Systemd-boot](https://wiki.archlinux.org/title/Systemd-boot). It is a pretty straight-forward
+boot manager. It is already included with Arch's [init](https://wiki.archlinux.org/title/Init) system, 
+[Systemd](https://wiki.archlinux.org/title/Systemd). 
+
+[Bootctl](https://man.archlinux.org/man/bootctl.1) is used to install systemd-boot to the EFI 
+System Partition's (ESP) mountpoint. In this case, it is mounted to ```/boot```, for separation of concerns
+between OS and EFI related files is not wanted:
+
 ```sh
  bootctl --path=/boot install
 ```
 
 ![Systemd-boot_install.png](img/Systemd-boot_install.png)
+
+Systemd-boot searches for boot menu items. In this specific configuration, in ```/boot/loader/entries/arch.conf```.
+In order to use encryption, the root's UUID (Universally unique identifier) is used to identify such partition.
+It is added to the file so it is not necessary to manually copy all of those characters:
 
 ```sh
  echo $(blkid -s UUID -o value /dev/sda2) >> /boot/loader/entries/arch.conf
@@ -282,27 +296,46 @@ systemctl enable NetworkManager
 
 ![UUID_sda2.png](img/UUID_sda2.png)
 
+The file is then edited:
+
 ```sh
 vim boot/loader/entries/arch.conf 
 ```
 
 ![Archconf.png](img/Archconf.png)
 
+- ```title```: The Operating System name.
+- ```linux```: EFI program to start. Relative to the EFI System Partition.
+- ```initrd```: It is used to state kernel parameters. 
+- ```options```: Options to pass to the EFI program or kernel parameters.
+
+Since this is a linux only boot, ```linux``` can be used instead of ```efi```. The syntax differs in both cases.
+
+The loader configurations is found in ```/boot/loader/loader.conf```:
+
 ```sh
 vim /boot/loader/loader.conf
 ```
+
+The following configuration is added:
 
 ![Loaderconf_config.png](img/Loaderconf_config.png)
 
 ## Reboot
 
+It is required to type ```exit``` or press ```Ctrl+d``` to exit the chroot environment:
+
 ```sh
 exit
 ```
 
+Even though it is not a must, the used partitions may be manually unmounted.
+
 ```sh
 umount -R /mnt
 ```
+
+The following command restarts the machine:
 
 ```sh
 reboot
