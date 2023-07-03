@@ -736,8 +736,8 @@ and <a href="https://wiki.archlinux.org/title/Su">su</a> utilities. In the follo
 </span></code></pre></div>
 <p>The configuration for sudo is found in <code>/etc/sudoers</code>. It must be edited by using <a href="https://man.archlinux.org/man/visudo.8">visudo</a>.
 Visudo locks the sudoers file against multiple simultaneous edits, performs basic validity checks, and checks for syntax errors before installing the edited file. This prevents any error that could make of sudo inoperable.</p>
-<p>The default editor for visudo is vi. To establish  as the visudo editor for the duration of the current shell session, 
-set EDITOR=nano before visudo:</p>
+<p>The default editor for visudo is vi. To establish vim as the visudo editor for the duration of the current shell session, 
+set EDITOR=vim before visudo:</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="w"> </span><span class="nv">EDITOR</span><span class="o">=</span>vim<span class="w"> </span>visudo
 </span></code></pre></div>
 <p><code>%wheel ALL=(ALL) ALL</code> is uncommented to allow members of group wheel to execute any command:</p>

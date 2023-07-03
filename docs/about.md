@@ -12,3 +12,11 @@ but any miscalculation is just a ```timeshift --restore``` away from going back 
 Archmoured does _not_ intend to market itself as some kind of product/distro of its own. This is merely 
 a guide that intends to take you through a descriptive process that shows what to do, how 
 to do it and why is it important for the installation.
+
+This site wouldn't be possible without the help of these guides:
+
+- [Arch Linux Installation guide](https://wiki.archlinux.org/title/Installation_guide)
+
+- [Setting up Arch + LUKS + BTRFS + systemd-boot + apparmor + Secure Boot + TPM 2.0 - A long, nightmarish journey, now simplified](https://lemmy.eus/post/2898)
+
+- [Installing Arch Linux with Btrfs, systemd-boot and LUKS](https://nerdstuff.org/posts/2020/2020-004_arch_linux_luks_btrfs_systemd-boot/)

@@ -209,8 +209,8 @@ useradd -m -G wheel username
 The configuration for sudo is found in ```/etc/sudoers```. It must be edited by using [visudo](https://man.archlinux.org/man/visudo.8).
 Visudo locks the sudoers file against multiple simultaneous edits, performs basic validity checks, and checks for syntax errors before installing the edited file. This prevents any error that could make of sudo inoperable.
 
-The default editor for visudo is vi. To establish  as the visudo editor for the duration of the current shell session, 
-set EDITOR=nano before visudo:
+The default editor for visudo is vi. To establish vim as the visudo editor for the duration of the current shell session, 
+set EDITOR=vim before visudo:
 
 ```sh
  EDITOR=vim visudo
