@@ -14,7 +14,7 @@
       
         <link rel="next" href="../post-install/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../img/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
@@ -24,6 +24,9 @@
     
     
       <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -39,6 +42,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -49,11 +54,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -79,8 +87,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Archmoured" class="md-header__button md-logo" aria-label="Archmoured" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../img/favicon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -102,6 +109,8 @@
         </div>
       </div>
     </div>
+    
+      
     
     
     
@@ -165,8 +174,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Archmoured" class="md-nav__button md-logo" aria-label="Archmoured" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../img/favicon.png" alt="logo">
 
     </a>
     Archmoured
@@ -583,8 +591,8 @@ Usually, the one generated on the live system is fine. If not, it may be
 <p><a href="https://wiki.archlinux.org/title/Pacstrap">Pacstrap</a> is designed to create a new system installation from scratch.
 It is used to install specified packages into a given directory after setting up the mountpoints defined before
 (specifically into the root partition):</p>
-<pre><code class="language-sh">pacstrap /mnt base base-devel linux linux-firmware btrfs-progs vim intel-ucode
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pacstrap<span class="w"> </span>/mnt<span class="w"> </span>base<span class="w"> </span>base-devel<span class="w"> </span>linux<span class="w"> </span>linux-firmware<span class="w"> </span>btrfs-progs<span class="w"> </span>vim<span class="w"> </span>intel-ucode
+</span></code></pre></div>
 <ul>
 <li>
 <p><code>base</code>: Minimal package set to define a basic Arch Linux installation</p>
@@ -618,56 +626,56 @@ program later on.</p>
 <h3 id="fstab">Fstab</h3>
 <p>The <a href="https://wiki.archlinux.org/title/Fstab">fstab</a> file can be used to define how disk partitions, various other block 
 devices, or remote file systems should be mounted into the file system. A fstab file is generated with:</p>
-<pre><code class="language-sh">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>genfstab<span class="w"> </span>-U<span class="w"> </span>/mnt<span class="w"> </span>&gt;&gt;<span class="w"> </span>/mnt/etc/fstab
+</span></code></pre></div>
 <p><img alt="Genfstab.png" src="../img/Genfstab.png" /></p>
 <h3 id="chroot">Chroot</h3>
 <p>A <a href="https://wiki.archlinux.org/title/Chroot">chroot</a> is an operation that changes the parent root directory 
 for the current running process and their children. The following command changes root into the new system:</p>
-<pre><code class="language-sh">arch-chroot /mnt/
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>arch-chroot<span class="w"> </span>/mnt/
+</span></code></pre></div>
 <h3 id="time-zone">TIme-zone</h3>
 <p>By running the following command, an <code>/etc/localtime</code> symlink that points to a zoneinfo is created. If the user's
 time zone name is unknown, it is recommended to play around by looking at the zoneinfo directory content (e.g. 
 <code>ls /usr/share/zoneinfo/</code>) to see which option is best suited. Replacing Region and City is necessary:</p>
-<pre><code class="language-sh">ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ln<span class="w"> </span>-sf<span class="w"> </span>/usr/share/zoneinfo/Region/City<span class="w"> </span>/etc/localtime
+</span></code></pre></div>
 <p><a href="https://man.archlinux.org/man/hwclock.8">Hwclock</a> is an administration tool for the time clocks. The following command
 sets the Hardware Clock from the System Clock and updates the timestamps found in /etc/adjtime:</p>
-<pre><code class="language-sh">hwclock --systohc
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>hwclock<span class="w"> </span>--systohc
+</span></code></pre></div>
 <h3 id="localization">Localization</h3>
 <p>To make use of the english language in the system, <code>en_US.UTF-8 UTF-8</code>  found in <code>/etc/locale.gen</code> must be uncommented:</p>
-<pre><code class="language-sh">vim /etc/locale.gen
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>vim<span class="w"> </span>/etc/locale.gen
+</span></code></pre></div>
 <p>By using <a href="https://man.archlinux.org/man/echo.1">echo</a>, it is possible to edit/create a file without having to use a text editor. 
 This command creates a locale.conf file and sets the LANG variable to the same uncommented above:</p>
-<pre><code class="language-sh">echo LANG=en_US.UTF-8 &gt; /etc/locale.conf
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8<span class="w"> </span>&gt;<span class="w"> </span>/etc/locale.conf
+</span></code></pre></div>
 <p>The locales are generated by running:</p>
-<pre><code class="language-sh">locale-gen
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>locale-gen
+</span></code></pre></div>
 <p><img alt="Localization.png" src="../img/Localization.png" /></p>
 <h3 id="optional-persistent-keyboard-layout">(Optional) Persistent keyboard layout</h3>
 <p>A persistent console keyboard layout can be specified by writing it on <code>/etc/vconsole.conf</code>. On the next
 example, the Latin American layout is chosen:</p>
-<pre><code class="language-sh">echo KEYMAP=la-latin1 &gt; /etc/vconsole.conf
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">KEYMAP</span><span class="o">=</span>la-latin1<span class="w"> </span>&gt;<span class="w"> </span>/etc/vconsole.conf
+</span></code></pre></div>
 <h3 id="network-configuration">Network configuration</h3>
 <p>The following command creates the hostname file an adds the system's hostname. 
 In this example, <code>myhost</code> is the hostname:</p>
-<pre><code class="language-sh">echo myhost &gt; /etc/hostname
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">echo</span><span class="w"> </span>myhost<span class="w"> </span>&gt;<span class="w"> </span>/etc/hostname
+</span></code></pre></div>
 <p><a href="https://man.archlinux.org/man/nss-myhostname.8">Nss-myhostname</a> provides localhost and the local hostname resolution to an 
 IP address. Still, some software may instead read <code>/etc/hosts</code> directly. To prevent such software from unsafely resolving 
 localhost over the network, entries for localhost are added. Resolving the local hostname is allowed by adding it too:</p>
-<pre><code class="language-sh">vim /etc/hosts
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>vim<span class="w"> </span>/etc/hosts
+</span></code></pre></div>
 <p>The following text must be added to the file:</p>
-<pre><code>127.0.0.1 localhost
-::1 localhost
-127.0.1.1 myhost.localdomain myhost
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>127.0.0.1 localhost
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>::1 localhost
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>127.0.1.1 myhost.localdomain myhost
+</span></code></pre></div>
 <p><img alt="Etc_hosts.png" src="../img/Etc_hosts.png" /></p>
 <p>A configuration for a system with a permanent IP address or a domain name can be done too, but this won't be covered in this guide.</p>
 <h3 id="initramfs">Initramfs</h3>
@@ -708,36 +716,36 @@ scsi, firewire, usb, or mmc.</p>
 <p><code>filesystems</code>: adds filesystems modules to the image.</p>
 </li>
 </ul>
-<pre><code class="language-sh">vim /etc/mkinitcpio.conf
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>vim<span class="w"> </span>/etc/mkinitcpio.conf
+</span></code></pre></div>
 <p><img alt="Mkinitcpio_config.png" src="../img/Mkinitcpio_config.png" /></p>
 <p>The initramfs image is recreated:</p>
-<pre><code class="language-sh">mkinitcpio -P
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>mkinitcpio<span class="w"> </span>-P
+</span></code></pre></div>
 <p><img alt="Mkinitcpio_allpresets.png" src="../img/Mkinitcpio_allpresets.png" /></p>
 <h3 id="password-creation">Password creation</h3>
 <p>A root password is set:</p>
-<pre><code class="language-sh">passwd
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>passwd
+</span></code></pre></div>
 <h3 id="user-creation">User creation</h3>
 <p>With the following command, an user and the respective home directory is created. This user is wheel member.
 Wheel is the administration group, commonly used to give privileges to perform administrative actions. Even
 though it isn't the default, it can also be used to give access to the <a href="https://wiki.archlinux.org/title/Sudo">sudo</a> 
 and <a href="https://wiki.archlinux.org/title/Su">su</a> utilities. In the following example, <code>username</code> is the user's name:</p>
-<pre><code class="language-sh">useradd -m -G wheel username
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>useradd<span class="w"> </span>-m<span class="w"> </span>-G<span class="w"> </span>wheel<span class="w"> </span>username
+</span></code></pre></div>
 <p>The configuration for sudo is found in <code>/etc/sudoers</code>. It must be edited by using <a href="https://man.archlinux.org/man/visudo.8">visudo</a>.
 Visudo locks the sudoers file against multiple simultaneous edits, performs basic validity checks, and checks for syntax errors before installing the edited file. This prevents any error that could make of sudo inoperable.</p>
 <p>The default editor for visudo is vi. To establish  as the visudo editor for the duration of the current shell session, 
 set EDITOR=nano before visudo:</p>
-<pre><code class="language-sh"> EDITOR=vim visudo
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="w"> </span><span class="nv">EDITOR</span><span class="o">=</span>vim<span class="w"> </span>visudo
+</span></code></pre></div>
 <p><code>%wheel ALL=(ALL) ALL</code> is uncommented to allow members of group wheel to execute any command:</p>
-<pre><code class="language-sh">%wheel ALL=(ALL) ALL
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>%wheel<span class="w"> </span><span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span><span class="w"> </span>ALL
+</span></code></pre></div>
 <p>It is highly recommended to set a password for the created user:</p>
-<pre><code class="language-sh">passwd username
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>passwd<span class="w"> </span>username
+</span></code></pre></div>
 <p><img alt="User_creation.png" src="../img/User_creation.png" /></p>
 <p>Using pacman, the following packages are installed:</p>
 <ul>
@@ -769,13 +777,13 @@ set EDITOR=nano before visudo:</p>
 <p><code>xdg-user-dirs</code>: Manages user directories like <code>~/Desktop</code> and <code>~/Music</code>.</p>
 </li>
 </ul>
-<pre><code class="language-sh">pacman -S linux-headers networkmanager dialog wpa_supplicant mtools dosfstools git xdg-utils xdg-user-dirs
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>pacman<span class="w"> </span>-S<span class="w"> </span>linux-headers<span class="w"> </span>networkmanager<span class="w"> </span>dialog<span class="w"> </span>wpa_supplicant<span class="w"> </span>mtools<span class="w"> </span>dosfstools<span class="w"> </span>git<span class="w"> </span>xdg-utils<span class="w"> </span>xdg-user-dirs
+</span></code></pre></div>
 <p>The main command used to introspect and control systemd is <a href="https://man.archlinux.org/man/systemctl.1">systemctl</a>. 
 Some of its uses are examining the system state and managing the system and services. The following command enables
 NetworkManager to start automatically at boot:</p>
-<pre><code class="language-sh">systemctl enable NetworkManager
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>NetworkManager
+</span></code></pre></div>
 <p><img alt="Enable_nm.png" src="../img/Enable_nm.png" /></p>
 <h2 id="bootloader">Bootloader</h2>
 <h3 id="systemd-boot-as-bootloader">Systemd-boot as bootloader</h3>
@@ -788,18 +796,18 @@ boot manager. It is already included with Arch's <a href="https://wiki.archlinux
 <p><a href="https://man.archlinux.org/man/bootctl.1">Bootctl</a> is used to install systemd-boot to the EFI 
 System Partition's (ESP) mountpoint. In this case, it is mounted to <code>/boot</code>, for separation of concerns
 between OS and EFI related files is not wanted:</p>
-<pre><code class="language-sh"> bootctl --path=/boot install
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="w"> </span>bootctl<span class="w"> </span>--path<span class="o">=</span>/boot<span class="w"> </span>install
+</span></code></pre></div>
 <p><img alt="Systemd-boot_install.png" src="../img/Systemd-boot_install.png" /></p>
 <p>Systemd-boot searches for boot menu items. In this specific configuration, in <code>/boot/loader/entries/arch.conf</code>.
 In order to use encryption, the root's UUID (Universally unique identifier) is used to identify such partition.
 It is added to the file so it is not necessary to manually copy all of those characters:</p>
-<pre><code class="language-sh"> echo $(blkid -s UUID -o value /dev/sda2) &gt;&gt; /boot/loader/entries/arch.conf
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span>blkid<span class="w"> </span>-s<span class="w"> </span>UUID<span class="w"> </span>-o<span class="w"> </span>value<span class="w"> </span>/dev/sda2<span class="k">)</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/boot/loader/entries/arch.conf
+</span></code></pre></div>
 <p><img alt="UUID_sda2.png" src="../img/UUID_sda2.png" /></p>
 <p>The file is then edited:</p>
-<pre><code class="language-sh">vim boot/loader/entries/arch.conf 
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>vim<span class="w"> </span>boot/loader/entries/arch.conf<span class="w"> </span>
+</span></code></pre></div>
 <p><img alt="Archconf.png" src="../img/Archconf.png" /></p>
 <ul>
 <li><code>title</code>: The Operating System name.</li>
@@ -809,20 +817,20 @@ It is added to the file so it is not necessary to manually copy all of those cha
 </ul>
 <p>Since this is a linux only boot, <code>linux</code> can be used instead of <code>efi</code>. The syntax differs in both cases.</p>
 <p>The loader configurations is found in <code>/boot/loader/loader.conf</code>:</p>
-<pre><code class="language-sh">vim /boot/loader/loader.conf
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>vim<span class="w"> </span>/boot/loader/loader.conf
+</span></code></pre></div>
 <p>The following configuration is added:</p>
 <p><img alt="Loaderconf_config.png" src="../img/Loaderconf_config.png" /></p>
 <h2 id="reboot">Reboot</h2>
 <p>It is required to type <code>exit</code> or press <code>Ctrl+d</code> to exit the chroot environment:</p>
-<pre><code class="language-sh">exit
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">exit</span>
+</span></code></pre></div>
 <p>Even though it is not a must, the used partitions may be manually unmounted.</p>
-<pre><code class="language-sh">umount -R /mnt
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>umount<span class="w"> </span>-R<span class="w"> </span>/mnt
+</span></code></pre></div>
 <p>The following command restarts the machine:</p>
-<pre><code class="language-sh">reboot
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>reboot
+</span></code></pre></div>
 <p><img alt="Preparing_reboot.png" src="../img/Preparing_reboot.png" /></p>
 
 
@@ -840,15 +848,52 @@ It is added to the file so it is not necessary to manually copy all of those cha
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Pre-Install" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Pre-Install
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../post-install/" class="md-footer__link md-footer__link--next" aria-label="Next: Post-Install" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Post-Install
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
   
+    <div class="md-copyright__highlight">
+      Licensed under the GNU General Public License v3.0
+    </div>
   
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
   
 </div>
       
@@ -861,7 +906,7 @@ It is added to the file so it is not necessary to manually copy all of those cha
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.footer", "header.autohide", "content.code.copy"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.b425cdc4.min.js"></script>

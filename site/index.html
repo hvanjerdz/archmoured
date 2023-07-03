@@ -12,7 +12,7 @@
       
         <link rel="next" href="barebones/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="img/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
     
     
@@ -22,6 +22,9 @@
     
     
       <link rel="stylesheet" href="assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -37,6 +40,8 @@
       
     
     
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -47,11 +52,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -77,8 +85,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="Archmoured" class="md-header__button md-logo" aria-label="Archmoured" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="img/favicon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -100,6 +107,8 @@
         </div>
       </div>
     </div>
+    
+      
     
     
     
@@ -163,8 +172,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="." title="Archmoured" class="md-nav__button md-logo" aria-label="Archmoured" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="img/favicon.png" alt="logo">
 
     </a>
     Archmoured
@@ -502,10 +510,10 @@
 <h1 id="pre-installation">Pre-Installation</h1>
 <h2 id="the-very-first-thing">The very first thing</h2>
 <p>This guide illustrates the installation process on a virtual machine. Every command and code snippet will be presented 
-within code elements for easy identification and differentiation from regular text, such as this one:</p>
-<pre><code>This is a code element
-</code></pre>
-<p>This allows the reader to conveniently use the commands without ever reading all of these words (although 
+within code elements for easy identification and differentiation from regular text, such as this one:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>This is a code element
+</span></code></pre></div>
+This allows the reader to conveniently use the commands without ever reading all of these words (although 
 it is not recommended).</p>
 <h3 id="installation-image">Installation image</h3>
 <p>To obtain an installation image, it is suggested to download an ISO file via HTTP 
@@ -519,8 +527,8 @@ It is recomended to verify the ISO signature to make sure it is <a href="https:/
 <p>If the reader is <em>extra</em> paranoid, the ISO PGP signature (the iso.sig file also found on the index) can be downloaded 
 in the same directory and verified (assuming that <a href="https://www.gnupg.org/">GnuPG</a>, a libre encryption tool is already 
 installed) with:</p>
-<pre><code class="language-sh">gpg --keyserver-options auto-key-retrieve --verify archlinux-version-x86_64.iso.sig
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gpg<span class="w"> </span>--keyserver-options<span class="w"> </span>auto-key-retrieve<span class="w"> </span>--verify<span class="w"> </span>archlinux-version-x86_64.iso.sig
+</span></code></pre></div>
 <p><img alt="Verified signature" src="img/Verified_Signature.png" /></p>
 <p>It is. It also matches the key fingerprint of the <a href="https://archlinux.org/people/developers/">Arch Linux Developer who signed the ISO</a>.</p>
 <p><img alt="Developer who signed it" src="img/Developer_who_signed_it.png" /></p>
@@ -544,18 +552,18 @@ selected. </p>
 <h3 id="optional-set-console-keyboard-layout">(Optional) Set console keyboard layout</h3>
 <p>The default console keymap is <a href="https://en.wikipedia.org/wiki/File:KB_United_States-NoAltGr.svg">US</a>. All available layouts can be found in <code>/usr/share/kbd/keymaps</code>. For example's sake, this guide will show how to set up the <a href="https://commons.wikimedia.org/wiki/File:KB_Latin_American.svg">Latin American</a> layout (la). 
 To list all the available keymaps, the command <code>locatectl list-keymaps</code> is used. <a href="https://www.gnu.org/software/grep/manual/html_node/index.html">Grep</a> comes in handy when searching for a more specific result. Searching for this specific keymap can be done with:</p>
-<pre><code class="language-sh">localectl list-keymaps | grep -i la
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>localectl<span class="w"> </span>list-keymaps<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>la
+</span></code></pre></div>
 <p>Once located, it can be set up for the current session. This is done by using <a href="https://man.archlinux.org/man/loadkeys.1">loadkeys</a>.
 To set the already located layout, the loadkeys command followed by the chosen layout is used:</p>
-<pre><code class="language-sf">loadkeys la-latin1
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>loadkeys la-latin1
+</span></code></pre></div>
 <p><img alt="Latam_loadkeys.png" src="img/Latam_loadkeys.png" /></p>
 <p>And there it is!</p>
 <h3 id="boot-mode-verification">Boot mode verification</h3>
 <p>By running the following command, the boot mode is verified:</p>
-<pre><code class="language-sh">ls /sys/firmware/efi/efivars
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ls<span class="w"> </span>/sys/firmware/efi/efivars
+</span></code></pre></div>
 <p><img alt="Verified_UEFI_mode.png" src="img/Verified_UEFI_mode.png" /></p>
 <p>Since this virtual machine has EFI enabled, it shows the directory without error (and thus is booted in UEFI mode).
 If this directory does not exist on the system, the reader is strongly urged to <a href="/#installation-medium-preparation">check again</a> and be sure that the system is booting neither from BIOS nor CSM. </p>
@@ -572,15 +580,15 @@ some host. It is traditional to test a connection by tickling Google's DNS (8.8.
 <p>In the live environment, <a href="https://wiki.archlinux.org/title/Systemd-timesyncd">System-timesyncd</a> is enabled 
 by default and time is synced automatically once the connection to the internet is established. By running 
 <a href="https://man.archlinux.org/man/timedatectl.1">timedatectl</a>, it can be ensured that the system clock is accurate:</p>
-<pre><code class="language-sh">timedatectl
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>timedatectl
+</span></code></pre></div>
 <p>It must show an accurate <a href="https://time.is/UTC">Universal Time Clock</a>, that system clock is indeed syncronized, and that 
 NTP service is active. If for some reason NTP is inactive, it can be enabled again by using the <code>set-ntp</code> command. 
 It takes a boolean argument (true or false) and controls wheter network time synchronization is active and enabled. If
 it's true, this enables and starts the first existing network synchronization service. It is then enabled by running 
 the following command: </p>
-<pre><code class="language-sh">timedatectl set-ntp true
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>timedatectl<span class="w"> </span>set-ntp<span class="w"> </span><span class="nb">true</span>
+</span></code></pre></div>
 <h3 id="disk-partitioning">Disk partitioning</h3>
 <p>Disks are assigned to a block device, a special file that provides buffered access to a hardware device. Using 
 <a href="https://wiki.archlinux.org/title/Fdisk">fdisk</a> allows to identify such devices:</p>
@@ -593,8 +601,8 @@ in the image, although it might not be the same for the reader. Results ending i
 is highly encouraged (as in not partitioning that 8G device the live environment booted from when the target 
 device has a 1TB HDD).</p>
 <p>To modify partition tables, fdisk may be used.</p>
-<pre><code class="language-sh">fdisk /dev/sda
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>fdisk<span class="w"> </span>/dev/sda
+</span></code></pre></div>
 <p><img alt="Fdisk_devsda" src="img/Fdisk_devsda.png" /></p>
 <p>This setup uses an encrypted root partition and an EFI mode partition only. The use of <a href="https://wiki.archlinux.org/title/Swap">swap</a>
 is left to the reader's discretion. </p>
@@ -619,40 +627,40 @@ with the default partition type: Linux filesystem.</p>
 with <code>p</code>. Now it must be writeen to the disk and exit by typing <code>w</code>.</p>
 <p>In order to use luks for the created linux filesystem, an encrypted logical container must be initialized by using 
 <a href="https://wiki.archlinux.org/title/Dm-crypt/Device_encryption#Cryptsetup_usage">cryptsetup</a>:</p>
-<pre><code class="language-sh">cryptsetup luksFormat /dev/sda2
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cryptsetup<span class="w"> </span>luksFormat<span class="w"> </span>/dev/sda2
+</span></code></pre></div>
 <p>This prompts the user to create a passphrase.</p>
 <p>Via cryptsetup, the container must be opened followed by a placeholder. Any name suffices, but "crypt" is chosen 
 by sheer exemplification:</p>
-<pre><code class="language-sh">cryptsetup open /dev/sda2 luks
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cryptsetup<span class="w"> </span>open<span class="w"> </span>/dev/sda2<span class="w"> </span>luks
+</span></code></pre></div>
 <p>The user must enter the created passphrase.</p>
 <p><img alt="Cryptsetup_sda2.png" src="img/Cryptsetup_sda2.png" /></p>
 <h3 id="partition-formatting">Partition formatting</h3>
 <p>Once the partitions have been created, both must be formatted with their 
 <a href="https://wiki.archlinux.org/title/File_systems#Types_of_file_systems">appropiate file system</a>.</p>
 <p>Formatting the EFI partition with FAT32 is done through:</p>
-<pre><code class="language-sh">mkfs.fat -F 32 /dev/sda1
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>mkfs.fat<span class="w"> </span>-F<span class="w"> </span><span class="m">32</span><span class="w"> </span>/dev/sda1
+</span></code></pre></div>
 <p>On the other hand, the root partition is formatted to <a href="https://wiki.archlinux.org/title/Btrfs">btrfs</a>.
 This filesystem has been chosen for its properties, such as <a href="https://wiki.archlinux.org/title/Btrfs#Compression">compression</a>
 and <a href="https://wiki.archlinux.org/title/Btrfs#Snapshots">snapshot</a> handling:</p>
-<pre><code class="language-sh">mkfs.btrfs /dev/mapper/crypt
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>mkfs.btrfs<span class="w"> </span>/dev/mapper/crypt
+</span></code></pre></div>
 <p><img alt="Mkfs_btrfs.png" src="img/Mkfs_btrfs.png" /></p>
 <h3 id="partition-mounting">Partition mounting</h3>
 <p>Root and home subvolumes are created within the btrfs partition. This eases the use of snapshots since this guide
 uses timeshift for its convenience out of the box. To manually mount a file system located on a partition to a 
 directory, <a href="https://man.archlinux.org/man/mount.8">mount</a> is used: </p>
-<pre><code class="language-sh">mount /dev/mapper/luks /mnt
-
-btrfs sub create /mnt/@
-
-btrfs sub create /mnt/@home
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>mount<span class="w"> </span>/dev/mapper/luks<span class="w"> </span>/mnt
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>btrfs<span class="w"> </span>sub<span class="w"> </span>create<span class="w"> </span>/mnt/@
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>btrfs<span class="w"> </span>sub<span class="w"> </span>create<span class="w"> </span>/mnt/@home
+</span></code></pre></div>
 <p>The /mnt directory must be unmounted so that it can be used when mounting the partitions:</p>
-<pre><code class="language-sh">umount /mnt
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>umount<span class="w"> </span>/mnt
+</span></code></pre></div>
 <p><img alt="Mount_subvolumes.png" src="img/Mount_subvolumes.png" /></p>
 <p>The recently created subvolumes must me mounted.</p>
 <p>There are several options specified:</p>
@@ -676,18 +684,18 @@ the issue that version 1 may have on large filesystems. </p>
 <p><code>ssd</code>optimizes the process on <a href="https://wiki.archlinux.org/title/Solid_state_drive">Solid State Drives</a>.</p>
 </li>
 </ul>
-<pre><code class="language-sh">mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@ /dev/mapper/crypt /mnt
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>mount<span class="w"> </span>-o<span class="w"> </span>noatime,nodiratime,compress<span class="o">=</span>zstd:1,space_cache<span class="o">=</span>v2,ssd,subvol<span class="o">=</span>@<span class="w"> </span>/dev/mapper/crypt<span class="w"> </span>/mnt
+</span></code></pre></div>
 <p>Using the <code>--parents</code> option to make parents directories as needed. It is needed for the home subvolume
 and also the EFI partition.</p>
-<pre><code class="language-sh">mkdir -p /mnt/{boot,home}
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/<span class="o">{</span>boot,home<span class="o">}</span>
+</span></code></pre></div>
 <p>Mounting home subvolume with the options that were given before:</p>
-<pre><code class="language-sh">mount -o noatime,nodiratime,compress=zstd:1,space_cache=v2,ssd,subvol=@home /dev/mapper/crypt /mnt/home
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>mount<span class="w"> </span>-o<span class="w"> </span>noatime,nodiratime,compress<span class="o">=</span>zstd:1,space_cache<span class="o">=</span>v2,ssd,subvol<span class="o">=</span>@home<span class="w"> </span>/dev/mapper/crypt<span class="w"> </span>/mnt/home
+</span></code></pre></div>
 <p>Mounting EFI partition on boot. No option is needed:</p>
-<pre><code class="language-sh">mount /dev/sda1 /mnt/boot
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>mount<span class="w"> </span>/dev/sda1<span class="w"> </span>/mnt/boot
+</span></code></pre></div>
 <p><img alt="Mount_partitions.png" src="img/Mount_partitions.png" /></p>
 
 
@@ -705,15 +713,37 @@ and also the EFI partition.</p>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="barebones/" class="md-footer__link md-footer__link--next" aria-label="Next: Barebones" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Barebones
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
   
+    <div class="md-copyright__highlight">
+      Licensed under the GNU General Public License v3.0
+    </div>
   
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
   
 </div>
       
@@ -726,7 +756,7 @@ and also the EFI partition.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.footer", "header.autohide", "content.code.copy"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="assets/javascripts/bundle.b425cdc4.min.js"></script>
