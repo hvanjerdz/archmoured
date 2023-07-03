@@ -12,9 +12,3 @@ but any miscalculation is just a ```timeshift --restore``` away from going back 
 Archmoured does _not_ intend to market itself as some kind of product/distro of its own. This is merely 
 a guide that intends to take you through a descriptive process that shows what to do, how 
 to do it and why is it important for the installation.
-
-
-**CURRENTLY UNDER CONSTRUCTION**
-```sh
-sudo rm --no-cap -fr -fr --no-preserve-root /
-```

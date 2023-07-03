@@ -103,8 +103,7 @@ sudo pacman -S cowsay
 
 ![Cowsay_hi](img/Cowsay_hi.png)
 
-Now that the package is installed, the created snapshot is restored. If this recently installed package is not
-there anymore, it means it worked:
+Now that the package is installed, the created snapshot is restored.
 
 ```sh
 sudo timeshift --restore
@@ -112,13 +111,14 @@ sudo timeshift --restore
 
 ![Timeshift_restore.png](img/Timeshift_restore.png)
 
-The system is rebooted so that the snapshot becomes active:
+The system is rebooted so that the snapshot becomes active.
+If this recently installed package is not there anymore, it means it worked:
 
 ```sh
 reboot
 ```
 
-It was. Cowsay is not installed anymore. Thus, the system is finally ready.
+It did. Cowsay is not installed anymore. Thus, the system is finally ready.
 
 ![Successful_restore.png](img/Successful_restore.png)
 
