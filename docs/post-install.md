@@ -32,7 +32,7 @@ sudo pacman -Syu
 
 ![Pacman_syuuuuu.png](img/Pacman_syuuuuu.png)
 
-For convenience, an Arch User Repository helper is installed. These automate usage of the AUR. Tasks such as package search, 
+For convenience, an Arch User Repository helper is installed. These automates the usage of the AUR. Tasks such as package search, 
 resolving of dependencies, retrieving and building, and others are automated. This guide uses [yay](https://aur.archlinux.org/packages/yay), although virtually any other helper can be used. 
 
 Even though it is not necessary, an specific directory is selected to install this package's directory so everything 
@@ -127,5 +127,5 @@ It did. Cowsay is not installed anymore. Thus, the system is finally ready.
 There it is. A minimal install. For desktop use, it is highly recomended to use a graphical
 environment. Choosing one can be a true hassle. For this, virtually any other guide suffices 
 since this distro is well-known for its ricing community. For now, Archmoured encourages the 
-usage of [Xfce](https://wiki.archlinux.org/title/Xfce), for it brings a truly stable 
+use of [Xfce](https://wiki.archlinux.org/title/Xfce), for it brings a truly stable 
 experience.
