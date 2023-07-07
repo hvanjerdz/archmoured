@@ -9,7 +9,7 @@ Packages are downloaded from [mirror servers](https://wiki.archlinux.org/title/M
 recently synchronized HTTPS mirrors and sorting them by download rate after connecting to the
 internet on the live system.
 
-The higher a mirror is placed in the list, the more priority it is given when downloading a package.
+The higher a mirror is placed on the list, the more priority it is given when downloading a package.
 Usually, the one generated on the live system is fine. If not, it may be 
 [edited](https://wiki.archlinux.org/title/Help:Reading#Append,_add,_create,_edit).
 
@@ -149,29 +149,29 @@ A configuration for a system with a permanent IP address or a domain name can be
 The ```mkinitcpio.conf``` file must be edited, adding ```btrfs``` for it must be loaded before any boot hook.
 Inside ```HOOKS```, ```base udev systemd autodetect keyboard modconf block sd-encrypt filesystems``` is added.
 
-- `base`: provides crucial runtime necessities for booting.
+- ```base```: provides crucial runtime necessities for booting.
 
-- `udev`: adds the udev daemon to the initramfs, allowing for dynamic loading of modules and reliable detection of 
+- ```udev```: adds the udev daemon to the initramfs, allowing for dynamic loading of modules and reliable detection of 
 the root device via tags (UUID).
 
-- `systemd`: installs a basic systemd setup in the initramfs, and is meant toreplace the `base`, `usr`, `udev` 
-and `resume` hooks. Other hooks with runtime components will need to be ported, and will not work as intended. 
-Including ```base``` hook before this one to ensure that a rescue shell exists on the initramfs is a good idea.
+- ```systemd```: installs a basic systemd setup in the initramfs, and is meant toreplace the ```base```, ```usr```, 
+```udev``` and ```resume``` hooks. Other hooks with runtime components will need to be ported, and will not work 
+as intended. Including ```base``` hook before this one to ensure that a rescue shell exists on the initramfs is a good idea.
 
-- `autodetect`: shrinks the initramfs to a smaller size by autodetecting the needed
+- ```autodetect```: shrinks the initramfs to a smaller size by autodetecting the needed
 modules.
 
-- `keyboard`: loads the necessary modules for keyboard devices.
+- ```keyboard```: loads the necessary modules for keyboard devices.
 
-- `modconf`: installs modprobe configuration files from /etc/modprobe.d and
+- ```modconf```: installs modprobe configuration files from /etc/modprobe.d and
 /usr/lib/modprobe.d.
 
-- `block`: loads the necessary modules for most block devices using pata, sata,
+- ```block```: loads the necessary modules for most block devices using pata, sata,
 scsi, firewire, usb, or mmc.
 
-- `sd-encrypt`: allows for an encrypted root device with systemd initramfs.
+- ```sd-encrypt```: allows for an encrypted root device with systemd initramfs.
 
-- `filesystems`: adds filesystems modules to the image.
+- ```filesystems```: adds filesystems modules to the image.
 
 ```sh
 vim /etc/mkinitcpio.conf
@@ -209,8 +209,7 @@ useradd -m -G wheel username
 The configuration for sudo is found in ```/etc/sudoers```. It must be edited by using [visudo](https://man.archlinux.org/man/visudo.8).
 Visudo locks the sudoers file against multiple simultaneous edits, performs basic validity checks, and checks for syntax errors before installing the edited file. This prevents any error that could make of sudo inoperable.
 
-The default editor for visudo is vi. To establish vim as the visudo editor for the duration of the current shell session, 
-set EDITOR=vim before visudo:
+The default editor for visudo is vi. To establish vim as the visudo editor for the duration of the current shell session, ```EDITOR=vim``` is written before visudo:
 
 ```sh
  EDITOR=vim visudo
@@ -232,7 +231,7 @@ passwd username
 
 Using pacman, the following packages are installed:
 
-- ````linux-headers```: Headers and scripts for building modules for the Linux kernel.
+- ```linux-headers```: Headers and scripts for building modules for the Linux kernel.
 
 - ```networkmanager```: Network connection manager and user applications.
 

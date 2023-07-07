@@ -27,7 +27,7 @@ Downloading the ISO file and one of the checksum txt files is necessary to see i
 
 It does! The SHA256 checksum can also be seen on the official website.
 
-If the reader is *extra* paranoid, the ISO PGP signature (the iso.sig file also found on the index) can be downloaded 
+If the reader is *extra* paranoid, the ISO PGP signature (the iso.sig file also found at the index) can be downloaded 
 in the same directory and verified (assuming that [GnuPG](https://www.gnupg.org/), a libre encryption tool is already 
 installed) with:
 
@@ -50,7 +50,7 @@ It could be said that it is left as an exercise.
 incompatible with the reader's system.
 
 
-> Protip: Use [Ventoy](https://www.ventoy.net) to get the most out of your installation media (most likely an USB drive). 
+> Protip: [Ventoy](https://www.ventoy.net) gets the most out of an installation media (most likely an USB drive). 
 
 ## Into the live environment
 
@@ -60,7 +60,7 @@ Once booted, a shell prompt is presented.
 
 ### (Optional) Set console font
 
-Those small characters may not be to everyone's liking. With the aim of making the shown screenshots readable, a larger font has been
+Those small characters may not be to everyone's liking. With the aim of making the shown screenshots readable, a larger font is been
 selected. 
 
 ![Larger_font.png](img/Larger_font.png)
@@ -71,7 +71,7 @@ Console fonts can be found in ```usr/share/kbd/consolefonts/``` and set with [se
 
 ### (Optional) Set console keyboard layout
 
-The default console keymap is [US](https://en.wikipedia.org/wiki/File:KB_United_States-NoAltGr.svg). All available layouts can be found in ```/usr/share/kbd/keymaps```. For example's sake, this guide will show how to set up the [Latin American](https://commons.wikimedia.org/wiki/File:KB_Latin_American.svg) layout (la). 
+The default console keymap is [US](https://en.wikipedia.org/wiki/File:KB_United_States-NoAltGr.svg). All available layouts can be found in ```/usr/share/kbd/keymaps```. For example's sake, this guide will show how to set up the [Latin American](https://commons.wikimedia.org/wiki/File:KB_Latin_American.svg) layout (la-latin1). 
 To list all the available keymaps, the command ```locatectl list-keymaps``` is used. [Grep](https://www.gnu.org/software/grep/manual/html_node/index.html) comes in handy when searching for a more specific result. Searching for this specific keymap can be done with:
 
 
@@ -145,7 +145,7 @@ Disks are assigned to a block device, a special file that provides buffered acce
 ![Fdisk_list.png](img/Fdisk_list.png)
 
 This example shows that the storage device is handled by the kernel's 
-[SCSI](https://wiki.archlinux.org/title/Device_file#SCSI) driver subsystem, thus it starts with "sd". It sorts
+[SCSI](https://wiki.archlinux.org/title/Device_file#SCSI) driver subsystem, thus it starts with ```sd```. It sorts
 the devices from first to last discovered alphabetically. The device used on this guide is the sda device shown 
 in the image, although it might not be the same for the reader. Results ending in rom, loop or airoot may be ignored. 
 
@@ -161,7 +161,7 @@ fdisk /dev/sda
 
 ![Fdisk_devsda](img/Fdisk_devsda.png)
 
-This setup uses an encrypted root partition and an EFI mode partition only. The use of [swap](https://wiki.archlinux.org/title/Swap)
+This setup uses an encrypted root partition and an EFI mode partition only. Usage of [swap](https://wiki.archlinux.org/title/Swap)
 is left to the reader's discretion. 
 
 
@@ -172,8 +172,8 @@ his usercase.
 
 ![EFI_partition_creation.png](img/EFI_partition_creation.png)
 
-Creating a new empty [GPT](https://wiki.archlinux.org/title/Partitioning#GUID_Partition_Table) partition label (by typing ```g```) 
-is necessary, for these partitions are expected to boot in UEFI mode. 
+A new empty [GPT](https://wiki.archlinux.org/title/Partitioning#GUID_Partition_Table) partition label (by typing ```g```) 
+is created, for these partitions are expected to boot in UEFI mode. 
 
 Adding a new partition is done by typing ```n```. To make of it the [EFI system partition](https://wiki.archlinux.org/title/EFI_system_partition), the defaults for partition number and first sector are selected. 
 
@@ -236,8 +236,8 @@ mkfs.btrfs /dev/mapper/crypt
 ### Partition mounting
 
 Root and home subvolumes are created within the btrfs partition. This eases the use of snapshots since this guide
-uses timeshift for its convenience out of the box. To manually mount a file system located on a partition to a 
-directory, [mount](https://man.archlinux.org/man/mount.8) is used: 
+uses [timeshift](https://github.com/linuxmint/timeshift) for its convenience out of the box. To manually mount a 
+file system located on a partition to a directory, [mount](https://man.archlinux.org/man/mount.8) is used: 
 
 ```sh
 mount /dev/mapper/luks /mnt

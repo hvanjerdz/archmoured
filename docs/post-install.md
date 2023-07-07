@@ -60,7 +60,7 @@ The directory is changed to the one containing the package's [PKGBUILD](https://
 cd yay/
 ```
 
-The package is madeby running ```makepkg```. The ```-i``` flag installs the package if built successfully, so it is not
+The package is made by running ```makepkg```. The ```-i``` flag installs the package if built successfully, so it is not
 necessary to do it manually:
 
 ```sh

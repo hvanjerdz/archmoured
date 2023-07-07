@@ -28,6 +28,10 @@ copyright: Licensed under the GNU General Public License v3.0
 
 extra:
   generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/hvanjerdz/archmoured
+
 
 markdown_extensions:
   - pymdownx.highlight:
