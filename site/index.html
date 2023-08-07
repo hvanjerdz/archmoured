@@ -13,7 +13,7 @@
         <link rel="next" href="barebones/">
       
       <link rel="icon" href="img/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.eebd395e.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ecc896b0.min.css">
@@ -518,7 +518,7 @@ it is not recommended).</p>
 <h3 id="installation-image">Installation image</h3>
 <p>To obtain an installation image, it is suggested to download an ISO file via HTTP 
 from one of the mirror sites listed in the <a href="https://archlinux.org/download/">Arch Linux HTTP Direct Downloads</a>.
-It is recomended to verify the ISO signature to make sure it is <a href="https://www.theregister.com/2016/02/21/linux_mint_hacked_malwareinfected_isos_linked_from_official_site/">safe to use</a>.</p>
+It is recommended to verify the ISO signature to make sure it is <a href="https://www.theregister.com/2016/02/21/linux_mint_hacked_malwareinfected_isos_linked_from_official_site/">safe to use</a>.</p>
 <p>Once the site of choice has been selected, it greets with an index that contains the needed files. </p>
 <p><img alt="Index of /iso/" src="img/Index_of_ISO.png" /></p>
 <p>Downloading the ISO file and one of the checksum txt files is necessary to see if the image matches the checksum.</p>
@@ -544,8 +544,7 @@ incompatible with the reader's system.</p>
 <p>Once booted, a shell prompt is presented.</p>
 <p><img alt="Virtual_console.png" src="img/Virtual_console.png" /></p>
 <h3 id="optional-set-console-font">(Optional) Set console font</h3>
-<p>Those small characters may not be to everyone's liking. With the aim of making the shown screenshots readable, a larger font is been
-selected. </p>
+<p>Those small characters may not be to everyone's liking. With the aim of making the shown screenshots readable, a larger font is selected. </p>
 <p><img alt="Larger_font.png" src="img/Larger_font.png" /></p>
 <p>Console fonts can be found in <code>usr/share/kbd/consolefonts/</code> and set with <a href="https://man.archlinux.org/man/setfont.8">setfont</a>.</p>
 <p><img alt="Consolefont.png" src="img/Consolefont.png" /></p>
@@ -568,23 +567,23 @@ To set the already located layout, the loadkeys command followed by the chosen l
 <p>Since this virtual machine has EFI enabled, it shows the directory without error (and thus is booted in UEFI mode).
 If this directory does not exist on the system, the reader is strongly urged to <a href="/#installation-medium-preparation">check again</a> and be sure that the system is booting neither from BIOS nor CSM. </p>
 <h3 id="internet-connection">Internet connection</h3>
-<p>A network connection is required. A example won't be shown this time, although it is pretty <a href="https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet">straight-forward</a>.</p>
+<p>A network connection is required. An example won't be shown this time, although it is pretty <a href="https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet">straight-forward</a>.</p>
 <blockquote>
 <p>Protip: When using Wi-Fi, the live environment offers <a href="https://wiki.archlinux.org/title/Iwd#iwctl">iwctl</a>.</p>
 </blockquote>
 <p>After setting it up, the connection can be verified by <a href="https://wiki.archlinux.org/title/Network_configuration#Ping">ping</a>ing 
 some host. It is traditional to test a connection by tickling Google's DNS (8.8.8.8):</p>
 <p><img alt="Pinging_google.png" src="img/Pinging_google.png" /></p>
-<p>It stops when interrupted with Ctrl+c.</p>
+<p>It stops when interrupted with <code>Ctrl+c</code>.</p>
 <h3 id="system-clock-configuration">System clock configuration</h3>
 <p>In the live environment, <a href="https://wiki.archlinux.org/title/Systemd-timesyncd">System-timesyncd</a> is enabled 
 by default and time is synced automatically once the connection to the internet is established. By running 
 <a href="https://man.archlinux.org/man/timedatectl.1">timedatectl</a>, it can be ensured that the system clock is accurate:</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>timedatectl
 </span></code></pre></div>
-<p>It must show an accurate <a href="https://time.is/UTC">Universal Time Clock</a>, that system clock is indeed syncronized, and that 
+<p>It must show an accurate <a href="https://time.is/UTC">Universal Time Clock</a>, that system clock is indeed synchronized, and that 
 NTP service is active. If for some reason NTP is inactive, it can be enabled again by using the <code>set-ntp</code> command. 
-It takes a boolean argument (true or false) and controls wheter network time synchronization is active and enabled. If
+It takes a boolean argument (true or false) and controls whether network time synchronization is active and enabled. If
 it's true, this enables and starts the first existing network synchronization service. It is then enabled by running 
 the following command: </p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>timedatectl<span class="w"> </span>set-ntp<span class="w"> </span><span class="nb">true</span>
@@ -595,7 +594,7 @@ the following command: </p>
 <p><img alt="Fdisk_list.png" src="img/Fdisk_list.png" /></p>
 <p>This example shows that the storage device is handled by the kernel's 
 <a href="https://wiki.archlinux.org/title/Device_file#SCSI">SCSI</a> driver subsystem, thus it starts with <code>sd</code>. It sorts
-the devices from first to last discovered alphabetically. The device used on this guide is the sda device shown 
+the devices from first to last discovered alphabetically. The device used on this guide is the <code>`sda</code> device shown 
 in the image, although it might not be the same for the reader. Results ending in rom, loop or airoot may be ignored. </p>
 <p>Guidance through the size of every block device
 is highly encouraged (as in not partitioning that 8G device the live environment booted from when the target 
@@ -624,7 +623,7 @@ likes <a href="https://en.wikipedia.org/wiki/Power_of_two">powers of two</a>.</p
 <p>By typing <code>n</code> again and selecting the default option for everything, the partition table has a second partition
 with the default partition type: Linux filesystem.</p>
 <p>Even though it is not necessary, the image shows the verified partition table through <code>v</code> and the table itself 
-with <code>p</code>. Now it must be writeen to the disk and exit by typing <code>w</code>.</p>
+with <code>p</code>. Now it must be written to the disk and exit by typing <code>w</code>.</p>
 <p>In order to use luks for the created linux filesystem, an encrypted logical container must be initialized by using 
 <a href="https://wiki.archlinux.org/title/Dm-crypt/Device_encryption#Cryptsetup_usage">cryptsetup</a>:</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cryptsetup<span class="w"> </span>luksFormat<span class="w"> </span>/dev/sda2
@@ -632,13 +631,13 @@ with <code>p</code>. Now it must be writeen to the disk and exit by typing <code
 <p>This prompts the user to create a passphrase.</p>
 <p>Via cryptsetup, the container must be opened followed by a placeholder. Any name suffices, but "crypt" is chosen 
 by sheer exemplification:</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cryptsetup<span class="w"> </span>open<span class="w"> </span>/dev/sda2<span class="w"> </span>luks
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cryptsetup<span class="w"> </span>open<span class="w"> </span>/dev/sda2<span class="w"> </span>crypt
 </span></code></pre></div>
 <p>The user must enter the created passphrase.</p>
 <p><img alt="Cryptsetup_sda2.png" src="img/Cryptsetup_sda2.png" /></p>
 <h3 id="partition-formatting">Partition formatting</h3>
 <p>Once the partitions have been created, both must be formatted with their 
-<a href="https://wiki.archlinux.org/title/File_systems#Types_of_file_systems">appropiate file system</a>.</p>
+<a href="https://wiki.archlinux.org/title/File_systems#Types_of_file_systems">appropriate file system</a>.</p>
 <p>Formatting the EFI partition with FAT32 is done through:</p>
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>mkfs.fat<span class="w"> </span>-F<span class="w"> </span><span class="m">32</span><span class="w"> </span>/dev/sda1
 </span></code></pre></div>
@@ -652,7 +651,7 @@ and <a href="https://wiki.archlinux.org/title/Btrfs#Snapshots">snapshot</a> hand
 <p>Root and home subvolumes are created within the btrfs partition. This eases the use of snapshots since this guide
 uses <a href="https://github.com/linuxmint/timeshift">timeshift</a> for its convenience out of the box. To manually mount a 
 file system located on a partition to a directory, <a href="https://man.archlinux.org/man/mount.8">mount</a> is used: </p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>mount<span class="w"> </span>/dev/mapper/luks<span class="w"> </span>/mnt
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>mount<span class="w"> </span>/dev/mapper/crypt<span class="w"> </span>/mnt
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>btrfs<span class="w"> </span>sub<span class="w"> </span>create<span class="w"> </span>/mnt/@
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
@@ -662,7 +661,7 @@ file system located on a partition to a directory, <a href="https://man.archlinu
 <div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>umount<span class="w"> </span>/mnt
 </span></code></pre></div>
 <p><img alt="Mount_subvolumes.png" src="img/Mount_subvolumes.png" /></p>
-<p>The recently created subvolumes must me mounted.</p>
+<p>The recently created subvolumes must be mounted.</p>
 <p>There are several options specified:</p>
 <ul>
 <li>
@@ -771,10 +770,10 @@ and also the EFI partition.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.footer", "header.autohide", "content.code.copy"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.footer", "header.autohide", "content.code.copy"], "search": "assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.b425cdc4.min.js"></script>
+      <script src="assets/javascripts/bundle.220ee61c.min.js"></script>
       
     
   </body>
