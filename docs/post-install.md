@@ -24,7 +24,7 @@ of Arch Linux and one of its major distinguishing features. It combines a simple
 an easy-to-use build system. All packages offered by pacman are found in the [package search](https://archlinux.org/packages/)
 section.
 
-With the purpose of having an up-to-date system, the repository databases are synchronized and the packages are updated with:
+With the purpose of having an up-to-date system, the repository databases are synchronized, and the packages are updated with:
 
 ```sh
 sudo pacman -Syu
@@ -32,10 +32,10 @@ sudo pacman -Syu
 
 ![Pacman_syuuuuu.png](img/Pacman_syuuuuu.png)
 
-For convenience, an Arch User Repository helper is installed. These automates the usage of the AUR. Tasks such as package search, 
+For convenience, an Arch User Repository helper is installed. These automate the usage of the AUR. Tasks such as package search, 
 resolving of dependencies, retrieving and building, and others are automated. This guide uses [yay](https://aur.archlinux.org/packages/yay), although virtually any other helper can be used. 
 
-Even though it is not necessary, an specific directory is selected to install this package's directory so everything 
+Even though it is not necessary, a specific directory is selected to install this package's directory, so everything 
 is neat and tidy. The following example uses the ```~/Downloads``` directory created when installing ```xdg-user-dirs```:
 
 ```sh
@@ -124,7 +124,7 @@ It did. Cowsay is not installed anymore. Thus, the system is finally ready.
 
 ## Graphical User Interface
 
-There it is. A minimal install. For desktop use, it is highly recomended to use a graphical
+There it is. A minimal installation. For desktop use, it is highly recommended using a graphical
 environment. Choosing one can be a true hassle. For this, virtually any other guide suffices 
 since this distro is well-known for its ricing community. For now, Archmoured encourages the 
 use of [Xfce](https://wiki.archlinux.org/title/Xfce), for it brings a truly stable 

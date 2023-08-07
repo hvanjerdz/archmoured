@@ -31,7 +31,7 @@ getting a solid system.
 
 - ```linux```: [The Linux kernel](https://wiki.archlinux.org/title/Kernel) and modules. There are various [alternative 
 Linux kernels](https://wiki.archlinux.org/title/Kernel#Officially_supported_kernels) available for Arch Linux in addition 
-to the latest stable kernel. It is still recommended to use the vanilla one.
+to the latest stable kernel. It is still suggested to use the vanilla one.
 
 - ```linux-firmware```: Firmware files for Linux.
 
@@ -85,7 +85,7 @@ hwclock --systohc
 
 ### Localization
 
-To make use of the english language in the system, ```en_US.UTF-8 UTF-8```  found in ```/etc/locale.gen``` must be uncommented:
+To make use of the English language in the system, ```en_US.UTF-8 UTF-8``` found in ```/etc/locale.gen``` must be uncommented:
 
 ```sh
 vim /etc/locale.gen
@@ -154,7 +154,7 @@ Inside ```HOOKS```, ```base udev systemd autodetect keyboard modconf block sd-en
 - ```udev```: adds the udev daemon to the initramfs, allowing for dynamic loading of modules and reliable detection of 
 the root device via tags (UUID).
 
-- ```systemd```: installs a basic systemd setup in the initramfs, and is meant toreplace the ```base```, ```usr```, 
+- ```systemd```: installs a basic systemd setup in the initramfs, and is meant to replace the ```base```, ```usr```, 
 ```udev``` and ```resume``` hooks. Other hooks with runtime components will need to be ported, and will not work 
 as intended. Including ```base``` hook before this one to ensure that a rescue shell exists on the initramfs is a good idea.
 
@@ -221,7 +221,7 @@ The default editor for visudo is vi. To establish vim as the visudo editor for t
 %wheel ALL=(ALL) ALL
 ```
 
-It is highly recommended to set a password for the created user:
+It is highly advised to set a password for the created user:
 
 ```sh
 passwd username
@@ -287,7 +287,7 @@ between OS and EFI related files is not wanted:
 
 Systemd-boot searches for boot menu items. In this specific configuration, in ```/boot/loader/entries/arch.conf```.
 In order to use encryption, the root's UUID (Universally unique identifier) is used to identify such partition.
-It is added to the file so it is not necessary to manually copy all of those characters:
+It is added to the file, so it is not necessary to manually copy all of those characters:
 
 ```sh
  echo $(blkid -s UUID -o value /dev/sda2) >> /boot/loader/entries/arch.conf
@@ -299,6 +299,14 @@ The file is then edited:
 
 ```sh
 vim boot/loader/entries/arch.conf 
+```
+
+```sh
+title Arch Linux
+linux /vmlinuz-linux
+initrd /intel-ucode.img
+initrd /initramfs-linux.img
+options rd.luks.name=<UUID>=crypt root=/dev/mapper/crypt rootflags=subvol=@ rd.luks.options=<UUID>=discard rw quiet
 ```
 
 ![Archconf.png](img/Archconf.png)

@@ -15,7 +15,7 @@ it is not recommended).
 
 To obtain an installation image, it is suggested to download an ISO file via HTTP 
 from one of the mirror sites listed in the [Arch Linux HTTP Direct Downloads](https://archlinux.org/download/).
-It is recomended to verify the ISO signature to make sure it is [safe to use](https://www.theregister.com/2016/02/21/linux_mint_hacked_malwareinfected_isos_linked_from_official_site/).
+It is recommended to verify the ISO signature to make sure it is [safe to use](https://www.theregister.com/2016/02/21/linux_mint_hacked_malwareinfected_isos_linked_from_official_site/).
 
 Once the site of choice has been selected, it greets with an index that contains the needed files. 
 
@@ -60,8 +60,7 @@ Once booted, a shell prompt is presented.
 
 ### (Optional) Set console font
 
-Those small characters may not be to everyone's liking. With the aim of making the shown screenshots readable, a larger font is been
-selected. 
+Those small characters may not be to everyone's liking. With the aim of making the shown screenshots readable, a larger font is selected. 
 
 ![Larger_font.png](img/Larger_font.png)
 
@@ -105,7 +104,7 @@ If this directory does not exist on the system, the reader is strongly urged to 
 
 ### Internet connection
 
-A network connection is required. A example won't be shown this time, although it is pretty [straight-forward](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet).
+A network connection is required. An example won't be shown this time, although it is pretty [straight-forward](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet).
 
 > Protip: When using Wi-Fi, the live environment offers [iwctl](https://wiki.archlinux.org/title/Iwd#iwctl).
 
@@ -115,7 +114,7 @@ some host. It is traditional to test a connection by tickling Google's DNS (8.8.
 
 ![Pinging_google.png](img/Pinging_google.png)
 
-It stops when interrupted with Ctrl+c.
+It stops when interrupted with ```Ctrl+c```.
 
 ### System clock configuration
 
@@ -127,9 +126,9 @@ by default and time is synced automatically once the connection to the internet 
 timedatectl
 ```
 
-It must show an accurate [Universal Time Clock](https://time.is/UTC), that system clock is indeed syncronized, and that 
+It must show an accurate [Universal Time Clock](https://time.is/UTC), that system clock is indeed synchronized, and that 
 NTP service is active. If for some reason NTP is inactive, it can be enabled again by using the ```set-ntp``` command. 
-It takes a boolean argument (true or false) and controls wheter network time synchronization is active and enabled. If
+It takes a boolean argument (true or false) and controls whether network time synchronization is active and enabled. If
 it's true, this enables and starts the first existing network synchronization service. It is then enabled by running 
 the following command: 
 
@@ -146,7 +145,7 @@ Disks are assigned to a block device, a special file that provides buffered acce
 
 This example shows that the storage device is handled by the kernel's 
 [SCSI](https://wiki.archlinux.org/title/Device_file#SCSI) driver subsystem, thus it starts with ```sd```. It sorts
-the devices from first to last discovered alphabetically. The device used on this guide is the sda device shown 
+the devices from first to last discovered alphabetically. The device used on this guide is the ```sda`` device shown 
 in the image, although it might not be the same for the reader. Results ending in rom, loop or airoot may be ignored. 
 
 Guidance through the size of every block device
@@ -190,7 +189,7 @@ By typing ```n``` again and selecting the default option for everything, the par
 with the default partition type: Linux filesystem.
 
 Even though it is not necessary, the image shows the verified partition table through ```v``` and the table itself 
-with ```p```. Now it must be writeen to the disk and exit by typing ```w```.
+with ```p```. Now it must be written to the disk and exit by typing ```w```.
 
 In order to use luks for the created linux filesystem, an encrypted logical container must be initialized by using 
 [cryptsetup](https://wiki.archlinux.org/title/Dm-crypt/Device_encryption#Cryptsetup_usage):
@@ -205,7 +204,7 @@ Via cryptsetup, the container must be opened followed by a placeholder. Any name
 by sheer exemplification:
 
 ```sh
-cryptsetup open /dev/sda2 luks
+cryptsetup open /dev/sda2 crypt
 ```
 
 The user must enter the created passphrase.
@@ -215,7 +214,7 @@ The user must enter the created passphrase.
 ### Partition formatting
 
 Once the partitions have been created, both must be formatted with their 
-[appropiate file system](https://wiki.archlinux.org/title/File_systems#Types_of_file_systems).
+[appropriate file system](https://wiki.archlinux.org/title/File_systems#Types_of_file_systems).
 
 Formatting the EFI partition with FAT32 is done through:
 
@@ -240,7 +239,7 @@ uses [timeshift](https://github.com/linuxmint/timeshift) for its convenience out
 file system located on a partition to a directory, [mount](https://man.archlinux.org/man/mount.8) is used: 
 
 ```sh
-mount /dev/mapper/luks /mnt
+mount /dev/mapper/crypt /mnt
 
 btrfs sub create /mnt/@
 
@@ -255,7 +254,7 @@ umount /mnt
 
 ![Mount_subvolumes.png](img/Mount_subvolumes.png)
 
-The recently created subvolumes must me mounted.
+The recently created subvolumes must be mounted.
 
 There are several options specified:
 

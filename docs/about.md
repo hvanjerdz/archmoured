@@ -6,7 +6,7 @@ a solid system. As there are almost no up-to-date instructions for this specific
 to share it on the internet in extreme detail so that anyone can replicate it and understand it as well.
 
 By using btrfs in order to make use of snapshots, luks for encryption and systemd-boot as bootloader, 
-this Arch install is truly unbreakable and easily recoverable. User-made mistakes are still a thing, 
+this installation is truly unbreakable and easily recoverable. User-made mistakes are still a thing, 
 but any miscalculation is just a ```timeshift --restore``` away from going back to a functional, comfy setup.
 
 Archmoured does _not_ intend to market itself as some kind of product/distro of its own. This is merely 
